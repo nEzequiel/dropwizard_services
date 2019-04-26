@@ -12,25 +12,27 @@ package Entities;
 public class Cidade {
     public int id;
     public String nome;
-    public int estado;
-    public int pais;
+    public int idEstado;
+    public int idPais;
     public int populacao;
+    public Estado estado;
+    public Pais pais;
     
     public Cidade(){
         
     }
     public Cidade(String nome,int estado,int pais, int populacao){
         this.nome=nome;
-        this.estado=estado;
-        this.pais=pais;
+        this.idEstado=estado;
+        this.idPais=pais;
         this.populacao=populacao;
     }
     
     public Cidade(int id,String nome,int estado,int pais, int populacao){
         this.id=id;
         this.nome=nome;
-        this.estado=estado;
-        this.pais=pais;
+        this.idEstado=estado;
+        this.idPais=pais;
         this.populacao=populacao;
     }
 }

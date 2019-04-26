@@ -9,6 +9,12 @@ package Entities;
  *
  * @author ezequiel
  */
-public class Empregado {
-    
+public class Usuario {
+    private String nome;
+    private String sobrenome;
+    private String email;
+    private String telefone;
+    private String login;
+    private String senha;
+    private boolean mensagens=false;
 }

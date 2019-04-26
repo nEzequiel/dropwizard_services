@@ -18,10 +18,23 @@ import java.sql.ResultSet;
  */
 public class DataAccess {
     
-    public Connection OpenDb() throws ClassNotFoundException{
+    private static DataAccess dbInstance;
+    
+    
+    private DataAccess(){
+        
+    }
+    public static synchronized DataAccess getInstance(){
+        if(dbInstance==null)
+            dbInstance=new DataAccess();
+        return dbInstance;
+    }
+
+    
+    public  Connection getConnection() throws ClassNotFoundException{
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url="jdbc:derby://localhost:1527/BDProjeto";
+            Class.forName("com.mysql.jdbc.Driver");
+            String url="jdbc:mysql://localhost:3306/BDProjeto";
             String user="ezequiel";
             String pass="123456";
             Connection conn=DriverManager.getConnection(url,user,pass);
@@ -33,27 +46,12 @@ public class DataAccess {
         return null;
     }
     
-    public boolean CloseDb(Connection conn) throws SQLException{
+    public boolean closeConnection(Connection conn) throws SQLException{
         if(!conn.isClosed()){
             conn.close();
             return true;
         }            
         return false;
-    }
-    
-    public ResultSet Query(String query) throws SQLException, ClassNotFoundException{
-        Connection conn=OpenDb();
-        PreparedStatement stm=conn.prepareStatement(query);
-        ResultSet rs=stm.executeQuery();
-        return rs;
-    }
-    
-    public int Update(String query) throws SQLException, ClassNotFoundException{
-        Connection conn=OpenDb();
-        PreparedStatement stm=conn.prepareStatement(query);
-        int retorno=stm.executeUpdate();
-        CloseDb(conn);
-        return retorno;
     }
     
 }

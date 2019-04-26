@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package Entities;
 
 /**
  *
  * @author ezequiel
  */
-public class EmpregadoDAO {
-    
+public class Comentario {
+    public int id;
+    public Usuario usuario;
+    public PontoTuristico ponto;
+    public String data;
+    public String texto;
 }

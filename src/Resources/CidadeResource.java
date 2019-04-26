@@ -19,10 +19,14 @@ import io.dropwizard.jersey.*;
 import io.dropwizard.jersey.params.*;
 import java.util.*;
 
-@Path("/cidades")
+@Path("/cidade")
 @Produces(MediaType.APPLICATION_JSON)
-public class CidadeResource {
-    public CidadeDAO cidadeDb=new CidadeDAO();
+public class CidadeResource implements TResource<Cidade> {
+    public CidadeDAO cidadeDb;
+    
+    public CidadeResource(CidadeDAO dao){
+        this.cidadeDb=dao;
+    }
     
     @GET
     public List<Cidade> read(){
@@ -54,7 +58,7 @@ public class CidadeResource {
     
     @GET
     @Path("/last")
-    public Cidade readFirst(){
+    public Cidade readLast(){
         try{
             return cidadeDb.Last();
         }catch(Exception ex){
@@ -101,6 +105,7 @@ public class CidadeResource {
         return null;
     }
     
+    
     @GET
     @Path("/paises")
     public List<Pais> readPaises(){
@@ -111,5 +116,5 @@ public class CidadeResource {
         }
         return null;
     }
-    
+
 }

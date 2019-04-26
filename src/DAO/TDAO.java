@@ -15,12 +15,12 @@ import java.util.List;
  * @author ezequiel
  */
 public interface TDAO<T> {
-    public int Insert(T obj);
-    public int Update(T obj,Long id);
-    public List<T> ToList();
-    public List<T> ToList(T obj);
-    public T Last();
-    public int Delete(Long id);
-    public T Get(int id); 
+    public int Insert(T obj) throws Exception;
+    public int Update(T obj,Long id) throws Exception;
+    public List<T> ToList() throws Exception;
+    public List<T> ToList(T obj) throws Exception;
+    public T Last() throws Exception;
+    public int Delete(Long id) throws Exception;
+    public T Get(int id) throws Exception; 
     
 }

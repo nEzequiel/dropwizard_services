@@ -12,13 +12,13 @@ package Entities;
 public class Estado {
     private int id;
     private String nome;
-    private int pais;
+    private Pais pais;
     
     public Estado(){
         
     }
     
-    public Estado(int id,String nome, int pais){
+    public Estado(int id,String nome, Pais pais){
         this.id=id;
         this.nome=nome;
         this.pais=pais;
