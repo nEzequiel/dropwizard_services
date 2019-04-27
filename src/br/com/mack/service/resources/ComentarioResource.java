@@ -3,45 +3,42 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Resources;
+package br.com.mack.service.resources;
+
+import br.com.mack.domain.Comentario;
+import br.com.mack.service.TResource;
+import io.dropwizard.jersey.params.LongParam;
+import java.util.List;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author ezequiel
  */
-import Entities.PontoTuristico;
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import io.dropwizard.jersey.*;
-import io.dropwizard.jersey.params.*;
-import java.util.*;
-
-@Path("/pontoturistico")
-public class PontoTuristicoResource implements TResource<PontoTuristico> {
-   @GET
-   public List<PontoTuristico> read(){
-       
-       
-       return null;
-   }
+public class ComentarioResource implements TResource<Comentario> {
 
     @Override
-    public PontoTuristico readThis(LongParam id) {
+    public List<Comentario> read() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public PontoTuristico readLast() {
+    public Comentario readThis(LongParam id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public PontoTuristico update(LongParam id, PontoTuristico entity) {
+    public Comentario readLast() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public PontoTuristico create(PontoTuristico entity) {
+    public Comentario update(LongParam id, Comentario entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Comentario create(Comentario entity) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -49,4 +46,5 @@ public class PontoTuristicoResource implements TResource<PontoTuristico> {
     public Response delete(LongParam id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

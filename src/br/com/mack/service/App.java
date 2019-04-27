@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Resources;
+package br.com.mack.service;
 
-import DAO.CidadeDAO;
-import DAO.DataAccess;
+import br.com.mack.service.resources.CidadeResource;
+import br.com.mack.service.resources.PontoTuristicoResource;
+import br.com.mack.data.daos.CidadeDAO;
+import br.com.mack.data.DataAccess;
+import br.com.mack.data.daos.PontoTuristicoDAO;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Environment;
@@ -28,5 +31,8 @@ public class App extends Application<Configuration>{
         //Instância e injeção do contexto de banco de dados de cidades.
         CidadeDAO cidadeData=new CidadeDAO(globalAccess);
         environment.jersey().register(new CidadeResource(cidadeData));
+ 
+        PontoTuristicoDAO pontoDAO=new PontoTuristicoDAO(globalAccess);
+        environment.jersey().register(new PontoTuristicoResource(pontoDAO));
     }
 }

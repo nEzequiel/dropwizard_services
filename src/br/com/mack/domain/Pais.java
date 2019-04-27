@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package br.com.mack.domain;
 
 /**
  *
@@ -16,6 +16,10 @@ public class Pais {
     public Pais(){
         
     }
+    public Pais(int id){
+        this.id=id;
+    }
+    
     
     public Pais(int id,String nome){
         this.id=id;

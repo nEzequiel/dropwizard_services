@@ -3,19 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package br.com.mack.domain;
 
 /**
  *
  * @author ezequiel
  */
 public class Estado {
+    
     private int id;
     private String nome;
     private Pais pais;
     
     public Estado(){
         
+    }
+    
+    public Estado(int id){
+        this.id=id;
     }
     
     public Estado(int id,String nome, Pais pais){

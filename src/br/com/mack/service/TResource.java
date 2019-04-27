@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Resources;
+package br.com.mack.service;
 
 /**
  *
@@ -20,11 +20,11 @@ public interface TResource<T> {
     @GET
     public T readThis(@PathParam("id") LongParam id);
     @GET
-    public T readLast();
+    public T readLast() throws Exception;
     @PUT
     public T update(@PathParam("id") LongParam id,T entity);
     @POST
-    public T create(T entity);
+    public T create(T entity) throws Exception;
     @DELETE
     public Response delete(@PathParam("id") LongParam id);
 }

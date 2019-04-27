@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package br.com.mack.data;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -34,7 +34,7 @@ public class DataAccess {
     public  Connection getConnection() throws ClassNotFoundException{
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url="jdbc:mysql://localhost:3306/BDProjeto";
+            String url="jdbc:mysql://localhost:3306/cidadesDB";
             String user="ezequiel";
             String pass="123456";
             Connection conn=DriverManager.getConnection(url,user,pass);

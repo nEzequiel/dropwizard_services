@@ -3,51 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Resources;
+package br.com.mack.data.daos;
+
+import br.com.mack.data.TDAO;
+import br.com.mack.domain.Usuario;
+import java.util.List;
 
 /**
  *
  * @author ezequiel
  */
-
-import Entities.Usuario;
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-import io.dropwizard.jersey.*;
-import io.dropwizard.jersey.params.*;
-import java.util.*;
-
-public class UsuarioResource implements TResource<Usuario>
-{
+public class UsuarioDAO implements TDAO<Usuario> {
 
     @Override
-    public List<Usuario> read() {
+    public int insert(Usuario obj) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Usuario readThis(LongParam id) {
+    public int update(Usuario obj, Long id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Usuario readLast() {
+    public List<Usuario> toList() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Usuario update(LongParam id, Usuario entity) {
+    public List<Usuario> toList(Usuario obj) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Usuario create(Usuario entity) {
+    public Usuario last() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Response delete(LongParam id) {
+    public int delete(Long id) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    @Override
+    public Usuario get(int id) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
