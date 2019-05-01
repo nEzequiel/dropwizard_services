@@ -35,4 +35,6 @@ public class App extends Application<Configuration>{
         PontoTuristicoDAO pontoDAO=new PontoTuristicoDAO(globalAccess);
         environment.jersey().register(new PontoTuristicoResource(pontoDAO));
     }
+    
+    
 }
