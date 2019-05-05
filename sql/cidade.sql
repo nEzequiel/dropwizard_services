@@ -34,18 +34,18 @@ Create table PontoTuristico(
 );
 
 Create table Usuario(
-    id int primary key,
+    id int primary key auto_increment,
     nome varchar(50) not null,
     sobrenome varchar(50) not null,
     email varchar(50) not null,
     telefone varchar(50) not null,
     login varchar(40) not null,
-    senha varchar(40) not null,
-    mensagens boolean not null
+    senha varchar(40) not null
 );
 
+select *from Comentario where pontoTuristico=2;
 Create table Avaliacao(
-    id int primary key,
+    id int primary key auto_increment,
     usuario int,
     pontoTuristico int,
     dataAvaliacao Date,
@@ -55,11 +55,11 @@ Create table Avaliacao(
 );
 
 Create table Comentario(
-    id int primary key,
+    id int primary key auto_increment,
     usuario int,
     pontoTuristico int,
     dataAvaliacao Date,
-    texto int not null,
+    texto varchar(70) not null,
     foreign key(usuario) references Usuario(id),
     foreign key(pontoTuristico) references PontoTuristico(id)
 );

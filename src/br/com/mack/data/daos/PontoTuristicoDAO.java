@@ -133,41 +133,6 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
     }
 
     @Override
-    public List<PontoTuristico> toList(PontoTuristico ponto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public PontoTuristico last() throws Exception {
-        PontoTuristico ponto=null;
-        String sqlCommand="select * from PontoTuristico order by id desc fetch first 1 rows only";
-        PreparedStatement stm=conn.prepareStatement(sqlCommand);            
-
-        try {
-            ResultSet rs=query(stm);
-            rs.next();
-            
-            int id=rs.getInt("id");
-            String nome=rs.getString("nome");
-            Cidade cidade=new Cidade(rs.getInt("cidade"));
-            String rua=rs.getString("numero");
-            String bairro=rs.getNString("bairro");
-            int numero=rs.getInt("numero");
-            int cep=rs.getInt("cep");
-            String abertura=rs.getString("abertura");
-            String fechamento=rs.getString("fechamento");
-            
-            ponto =new PontoTuristico(id,nome,cidade,rua,numero,bairro,cep,abertura,fechamento);
-        } 
-        catch (Exception ex) {
-            System.out.println("Erro ao buscar "+ex.getMessage());
-        }
-                
-        stm.close();
-        return ponto;
-    }
-
-    @Override
     public int delete(Long id) throws Exception {
         int retorno=0;
         String sqlCommand="Delete from PontoTuristico where id=?";

@@ -50,16 +50,6 @@ public class PontoTuristicoResource implements TResource<PontoTuristico> {
             
     }
 
-    @GET
-    @Path("/last")
-    public PontoTuristico readLast() {
-        try{
-            return pontoDb.last();
-        }catch(Exception ex){
-            throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
-        }
-    }
-
     @PUT
     @Path("{id}")
     public PontoTuristico update(@PathParam("id") LongParam id, PontoTuristico ponto) {
@@ -90,49 +80,5 @@ public class PontoTuristicoResource implements TResource<PontoTuristico> {
         }catch(Exception ex){
             throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
         }
-    }
-    
-    @GET
-    @Path("{id}/comentarios")
-    public List<Comentario> readComentarios(@PathParam("id") LongParam id) {
-        try{
-            return null;
-        }catch(Exception ex){
-            throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
-        }
-            
-    }
-    
-    @GET
-    @Path("{id}/avaliacoes")
-    public List<Comentario> readAvaliacoes(@PathParam("id") LongParam id) {
-        try{
-            return null;
-        }catch(Exception ex){
-            throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
-        }
-            
-    }
-    
-    @POST
-    @Path("{id}/comentario")
-    public Comentario createComentario(@PathParam("id") LongParam id, Comentario coment) {
-        try{
-            return null;
-        }catch(Exception ex){
-            throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
-        }
-            
-    }
-    
-    @POST
-    @Path("{id}/avaliacao")
-    public Avaliacao createAvaliacao(@PathParam("id") LongParam id, Avaliacao aval) {
-        try{
-            return null;
-        }catch(Exception ex){
-            throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
-        }
-            
     }
 }

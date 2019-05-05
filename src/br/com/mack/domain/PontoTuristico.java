@@ -7,7 +7,6 @@ package br.com.mack.domain;
 
 import java.sql.Time;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 
 
@@ -28,6 +27,9 @@ public class PontoTuristico{
 
     public PontoTuristico(){
         
+    }
+    public PontoTuristico(int id){
+        this.id=id;
     }
     
     public PontoTuristico(int id,String nome,Cidade cidade,String rua,int numero,String bairro,int cep,String abertura,String fechamento){

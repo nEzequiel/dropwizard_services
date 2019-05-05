@@ -19,12 +19,10 @@ public interface TResource<T> {
     public List<T> read();
     @GET
     public T readThis(@PathParam("id") LongParam id);
-    @GET
-    public T readLast() throws Exception;
     @PUT
     public T update(@PathParam("id") LongParam id,T entity);
     @POST
-    public T create(T entity) throws Exception;
+    public T create(T entity);
     @DELETE
     public Response delete(@PathParam("id") LongParam id);
 }

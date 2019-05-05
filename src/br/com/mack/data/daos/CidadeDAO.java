@@ -10,6 +10,7 @@ import br.com.mack.data.TDAO;
 import br.com.mack.domain.Cidade;
 import br.com.mack.domain.Estado;
 import br.com.mack.domain.Pais;
+import br.com.mack.exception.DatabaseCommandException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,21 +46,21 @@ public class CidadeDAO implements TDAO<Cidade> {
     
     
     @Override
-    public int insert(Cidade obj) throws SQLException {
+    public int insert(Cidade cidade) throws Exception{
         int retorno=0;
-        String sqlCommand="INSERT INTO Cidade "+"(nome,estado,pais,populacao) values(?,?,?,?)";
+        String sqlCommand="INSERT INTO Cidade (nome,estado,pais,populacao) values(?,?,?,?)";
         
         PreparedStatement stm=conn.prepareStatement(sqlCommand);
-        stm.setString(1,obj.getNome());
-        stm.setInt(2,obj.getEstado().getId());
-        stm.setInt(3,obj.getPais().getId());
-        stm.setInt(4,obj.getPopulacao());
+        stm.setString(1,cidade.getNome());
+        stm.setInt(2,cidade.getEstado().getId());
+        stm.setInt(3,cidade.getPais().getId());
+        stm.setInt(4,cidade.getPopulacao());
         
         try {
             retorno=execute(stm);
         } 
         catch (Exception ex) {
-            System.out.println("Erro ao inserir "+ex.getMessage());
+            System.out.println("Erro ao executar o comando sql"+ex.getMessage());
         }
                
         stm.close();
@@ -68,22 +69,22 @@ public class CidadeDAO implements TDAO<Cidade> {
     }
 
     @Override
-    public int update(Cidade obj,Long id) throws SQLException {
+    public int update(Cidade cidade,Long id) throws Exception {
         int retorno=0;
         String sqlCommand="Update Cidade set nome=?, estado=?, pais=?, populacao=? where id=?";
 
         PreparedStatement stm=conn.prepareStatement(sqlCommand);
-        stm.setString(1,obj.getNome());
-        stm.setInt(2,obj.getEstado().getId());
-        stm.setInt(3,obj.getPais().getId());
-        stm.setInt(4,obj.getPopulacao());
+        stm.setString(1,cidade.getNome());
+        stm.setInt(2,cidade.getEstado().getId());
+        stm.setInt(3,cidade.getPais().getId());
+        stm.setInt(4,cidade.getPopulacao());
         stm.setLong(5,id);
             
         try {
             retorno=execute(stm);
         } 
         catch (Exception ex) {
-            System.out.println("Erro ao atualizar "+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
                
         stm.close();
@@ -91,7 +92,7 @@ public class CidadeDAO implements TDAO<Cidade> {
         return retorno;
     }
     @Override
-    public Cidade get(int id) throws SQLException {
+    public Cidade get(int id) throws Exception {
         Cidade cidade=null;
         String sqlCommand="select * from Cidade where id=?";
         PreparedStatement stm=conn.prepareStatement(sqlCommand);
@@ -109,7 +110,7 @@ public class CidadeDAO implements TDAO<Cidade> {
             }
         } 
         catch (Exception ex) {
-            System.out.println("Erro ao Buscar "+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
        
         stm.close();
@@ -118,7 +119,7 @@ public class CidadeDAO implements TDAO<Cidade> {
     }
     
     @Override
-    public List<Cidade> toList() throws SQLException {
+    public List<Cidade> toList() throws Exception {
         List<Cidade> cidades=null;
         String sqlCommand="select * from Cidade";
         try (PreparedStatement stm = conn.prepareStatement(sqlCommand)) {
@@ -136,26 +137,23 @@ public class CidadeDAO implements TDAO<Cidade> {
                 }
             }
             catch (Exception ex) {
-                System.out.println("Erro ao Buscar "+ex.getMessage());
+                throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
             }
             stm.close();
         }
         return cidades;
     }
 
-    @Override
-    public List<Cidade> toList(Cidade obj) throws SQLException {
-        List<Cidade> cidade=new ArrayList();
-        String sqlCommand="select * from Cidade where Cast(id as text) like '"
-                +obj.getId()+"%' or nome Like '"
-                +obj.getNome()+" or estado Like "+obj.getEstado()+"% or pais Like "
-                +obj.getPais()+" or populacao Like "+obj.getPopulacao()+"";
-        PreparedStatement stm=conn.prepareStatement(sqlCommand);
-        //add
-        
-
+    
+    public List<Cidade> listCatalog(String nomeLike,int lastId) throws SQLException {
+        List<Cidade> cidades=null;
+        String sqlCommand="select * from Cidade where id > ? and nome like ?  limit 6;";
+        PreparedStatement stm = conn.prepareStatement(sqlCommand);
+        stm.setInt(1, lastId);
+        stm.setString(2, nomeLike+"%");
         try {
-            ResultSet rs=query(stm);
+            ResultSet rs= query(stm);
+            cidades=new ArrayList();
             
             while(rs.next()){
                 int id=rs.getInt("id");
@@ -163,43 +161,16 @@ public class CidadeDAO implements TDAO<Cidade> {
                 Estado estado=new Estado(rs.getInt("estado"));
                 Pais pais=new Pais(rs.getInt("pais"));
                 int populacao=rs.getInt("populacao");
-                cidade.add(new Cidade(id,nome,estado,pais,populacao));
+                cidades.add(new Cidade(id,nome,estado,pais,populacao));
             }
-        } 
+        }
         catch (Exception ex) {
             System.out.println("Erro ao Buscar "+ex.getMessage());
         }
-               
         stm.close();
-        
-        return cidade;
+        return cidades;
     }
-
-    @Override
-    public Cidade last() throws SQLException {
-        Cidade cidade=null;
-        String sqlCommand="select * from Cidade order by id desc fetch first 1 rows only";
-        PreparedStatement stm=conn.prepareStatement(sqlCommand);            
-
-        try {
-            ResultSet rs=query(stm);
-            rs.next();
-
-            int id=rs.getInt("id");
-            String nome=rs.getString("nome");
-            Estado estado=new Estado(rs.getInt("estado"));
-            Pais pais=new Pais(rs.getInt("pais"));
-            int populacao=rs.getInt("populacao");
-            cidade=new Cidade(id,nome,estado,pais,populacao);
-        } 
-        catch (Exception ex) {
-            System.out.println("Erro ao buscar "+ex.getMessage());
-        }
-                
-        stm.close();
-        return cidade;
-    }
-
+    
     @Override
     public int delete(Long id) throws SQLException {
         int retorno=0;

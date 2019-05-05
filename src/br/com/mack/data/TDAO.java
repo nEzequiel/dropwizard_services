@@ -18,8 +18,6 @@ public interface TDAO<T> {
     public int insert(T obj) throws Exception;
     public int update(T obj,Long id) throws Exception;
     public List<T> toList() throws Exception;
-    public List<T> toList(T obj) throws Exception;
-    public T last() throws Exception;
     public int delete(Long id) throws Exception;
     public T get(int id) throws Exception; 
     

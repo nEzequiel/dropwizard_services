@@ -42,6 +42,16 @@ public class CidadeResource implements TResource<Cidade> {
     }
     
     @GET
+    @Path("/catalog/{lastId}/{search}")
+    public List<Cidade> readCatalog(@PathParam("search") String nome,@PathParam("lastId") LongParam lastId){
+        try{
+            return cidadeDb.listCatalog("Ita",4);
+        }catch(Exception ex){
+           throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
+        }
+    }
+    
+    @GET
     @Path("{id}")
     @Override
     public Cidade readThis(@PathParam("id") LongParam id){
@@ -57,17 +67,6 @@ public class CidadeResource implements TResource<Cidade> {
         }
 
     }
-    
-    @GET
-    @Path("/last")
-    @Override
-    public Cidade readLast(){
-        try{
-            return cidadeDb.last();
-        }catch(Exception ex){
-            throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
-        }
-    }
    
     @POST
     @Override
@@ -75,8 +74,7 @@ public class CidadeResource implements TResource<Cidade> {
         try {
             cidadeDb.insert(cidade);
             return cidade;
-            
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             throw new WebApplicationException("Não foi possivel inserir a cidade de "+cidade.getNome()+"!!",404);   
         }
     }
@@ -88,7 +86,7 @@ public class CidadeResource implements TResource<Cidade> {
         try {
             cidadeDb.update(cidade,id.get());
             return cidade;
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
              throw new WebApplicationException("Cidade de id"+id+" não encontrada!!",404);
         }
     }

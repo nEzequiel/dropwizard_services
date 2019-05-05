@@ -9,6 +9,13 @@ package br.com.mack.exception;
  *
  * @author ezequiel
  */
-public class DatabaseCommandException {
+public class DatabaseCommandException extends Exception{
     
+    public DatabaseCommandException(String erro){
+        super(erro);
+    }
+    
+    public DatabaseCommandException(String erro,Throwable causa){
+        super(erro,causa);
+    }
 }
