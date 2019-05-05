@@ -5,31 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://code.jquery.com/jquery-3.4.0.min.js">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Cidades</title>
 </head>
 <body>
     <nav class="top-nav">
-            <button class="botao-padrao btn-login"></button>
+        <div>
+            <a href="index.html"><h1 class="h1">Inicio</h1></a>
+            <a href="admin.html"><h1 class="h1">Administrativo</h1></a>
+            <a href="contact.html"><h1 class="h1">Fale Conosco</h1></a>
+        </div>
+        <a href="login.html" class="botao-padrao btn-login">Login</a>
     </nav>
-    
     <section class="center-page">
-      
         <header class="apresentacao">
             <div>
-                <h1 class="title main-title">Simple Text</h1>
+                <h1 class="display-1">Cidades</h1>
                 <p class="subtitle">Some information about the site.</p>
             </div>
         </header>
         <main class="conteudo">
             <section class="consulta">
-                <h1>Title of Section</h1>
+                <h1>Cidades</h1>
                 <form>
                     <input placeholder="Busque por uma cidade..." type="text" name="" id=""><button class="botao-padrao btn-pesquisar">Pesquisar</button>
                 </form>
             </section>
-            <section>
+            <section class="search-cidades">
                 <article class="cidade-item"></article>
                 <article class="cidade-item"></article>
                 <article class="cidade-item"></article>
@@ -39,13 +41,13 @@
             </section>
         </main>
         <article class="main-cidades">
-            <article class="cidade-top">
+            <article class="cidade-top top1">
                 
             </article >
-            <article class="cidade-top">
+            <article class="cidade-top top2">
                 
             </article>
-            <article class="cidade-top">
+            <article class="cidade-top top3">
                 
             </article>    
         </article>
@@ -54,5 +56,6 @@
         </footer>
     </section>
 </body>
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <script src="assets/js/main.js"></script>
 </html>

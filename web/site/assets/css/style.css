@@ -1,14 +1,16 @@
-
 * {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  box-sizing: border-box; }
 
 html {
-  height: 100%; }
+  height: 100%;
+  padding-top: 30px; }
 
 body {
+  padding-top: 20px;
   height: 100%;
-  background: url("../img/night1.png");
+  background: url("../img/minimal.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: none;
@@ -20,19 +22,44 @@ body {
   border: none;
   background-color: #177cf0;
   border-radius: 15px;
-  color: white; }
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.botao-padrao:hover {
+  background-color: #1562b9;
+  transition: 0.35s linear all; }
 
 .top-nav {
+  position: fixed;
+  top: 0;
   width: 100%;
-  height: 40px;
+  height: 46px;
   background: #fff;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  padding: 0 2%; }
+  padding: 0 2% 0 5%;
+  transition: 0.35s linear all;
+  overflow: hidden;
+  box-shadow: 1px 0 10px 1px rgba(0, 0, 0, 0.521); }
+  .top-nav a:hover {
+    text-decoration: none;
+    color: #DDD; }
+  .top-nav div {
+    width: 40%;
+    display: flex;
+    justify-content: space-between; }
+    .top-nav div h1 {
+      font-size: 20px; }
+    .top-nav div a {
+      color: #2c2c2c; }
+    .top-nav div a:hover {
+      color: #1562b9; }
 
 .top-nav:hover {
-  transition: 0.2s linear all;
+  transition: 0.35s linear all;
   height: 50px; }
 
 .center-page {
@@ -50,98 +77,93 @@ body {
   padding: 8% 5%;
   box-shadow: 0 0 20px 0.5px rgba(0, 0, 0, 0.63); }
 
-.conteudo {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.363);
-  height: 90%;
-  padding: 5%;
-  align-self: center;
-  box-sizing: border-box;
-  box-shadow: 0 0 20px 0.5px rgba(0, 0, 0, 0.63); }
-  .conteudo .consulta {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; }
-    .conteudo .consulta form {
-      width: 50%;
-      display: flex;
-      justify-content: space-between;
-      align-self: center; }
-      .conteudo .consulta form input[type="text"] {
-        border: none;
-        border-radius: 15px;
-        width: 70%;
-        padding: 0 4%; }
-
 .main-cidades {
   width: 100%;
   height: 95%;
-  background: white; }
-
-footer {
-  width: 100%;
-  height: 100%;
-  background: #FFF; }
-
-* {
-  margin: 0;
-  padding: 0; }
-
-html {
-  height: 100%; }
-
-body {
-  height: 100%;
-  background: url("../img/night1.png");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: none;
-  background-size: cover; }
-
-.botao-padrao {
-  width: 100px;
-  height: 30px;
-  border: none;
-  background-color: #177cf0;
-  border-radius: 15px;
-  color: white; }
-
-.top-nav {
-  width: 100%;
-  height: 40px;
-  background: #fff;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 2%; }
-
-.top-nav:hover {
-  transition: 0.2s linear all;
-  height: 50px; }
-
-.center-page {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1;
-  grid-template-rows: 1fr 2fr 1.5fr 0.5fr;
-  flex-direction: column;
-  padding: 2% 20%; }
-
-.apresentacao {
   background: white;
-  height: 100%;
+  box-shadow: 0 0 20px 0.5px rgba(0, 0, 0, 0.63);
+  display: flex; }
+  .main-cidades .cidade-top {
+    width: 33.333%;
+    background-blend-mode: multiply; }
+  .main-cidades .cidade-top:hover {
+    background-blend-mode: normal; }
+  .main-cidades .cidade-top:first-child {
+    background: url("../img/night.png"), rgba(14, 13, 13, 0.411);
+    background-size: cover;
+    border-right: 2px solid rgba(0, 0, 0, 0.39); }
+  .main-cidades .cidade-top:nth-child(2) {
+    background: url("../img/night1.jpg"), rgba(14, 13, 13, 0.411);
+    background-size: cover; }
+  .main-cidades .cidade-top:last-child {
+    background: url("../img/night.png"), rgba(14, 13, 13, 0.411);
+    background-size: cover;
+    border-left: 2px solid rgba(0, 0, 0, 0.39); }
+
+.info {
+  padding: 2%;
   width: 100%;
-  padding: 8% 5%;
+  height: 100%;
+  background: rgba(12, 12, 12, 0.555);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  flex-direction: column; }
+  .info .btn-closeinfo {
+    align-self: flex-start;
+    border: none;
+    color: white;
+    background: rgba(0, 0, 0, 0);
+    font-size: 1.6em;
+    transition: 0.35s linear all; }
+  .info .btn-closeinfo:hover {
+    color: #177cf0;
+    transition: 0.35s linear all; }
+  .info .infoCidades {
+    overflow: scroll;
+    width: 55%;
+    height: 75%;
+    background: white;
+    padding: 2%; }
+    .info .infoCidades h1 {
+      font-size: 2em;
+      height: 30px; }
+  .info .info-subtitle {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; }
+    .info .info-subtitle h3 {
+      font-size: 1em;
+      padding: 0 0 0 0.4%; }
+  .info .avaliacao {
+    padding: 2% 2%;
+    border-bottom: 1px solid #ccc; }
+    .info .avaliacao h2 {
+      font-size: 1.5em; }
+  .info .tabela-pontos {
+    box-sizing: border-box; }
+    .info .tabela-pontos h2 {
+      font-size: 1.5em;
+      padding: 2% 2%; }
+
+footer {
+  width: 100%;
+  height: 100%;
+  background: #FFF;
   box-shadow: 0 0 20px 0.5px rgba(0, 0, 0, 0.63); }
 
 .conteudo {
+  color: white;
   width: 100%;
-  background: rgba(255, 255, 255, 0.363);
+  background: rgba(0, 0, 0, 0.555);
   height: 90%;
-  padding: 5%;
+  padding: 10% 5%;
   align-self: center;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   box-shadow: 0 0 20px 0.5px rgba(0, 0, 0, 0.63); }
   .conteudo .consulta {
     width: 100%;
@@ -149,26 +171,27 @@ body {
     flex-direction: column;
     justify-content: space-between; }
     .conteudo .consulta form {
-      width: 50%;
+      width: 60%;
+      padding: 3% 0;
       display: flex;
       justify-content: space-between;
       align-self: center; }
       .conteudo .consulta form input[type="text"] {
         border: none;
         border-radius: 15px;
-        width: 70%;
+        width: 75%;
         padding: 0 4%; }
-
-.main-cidades {
-  width: 100%;
-  height: 95%;
-  background: white; }
-
-footer {
-  width: 100%;
-  height: 100%;
-  background: #FFF; }
-
-
-
-
+  .conteudo .search-cidades {
+    width: 100%;
+    display: grid;
+    padding: 2%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: fr 1fr;
+    grid-row-gap: 50px;
+    grid-column-gap: 50px;
+    box-sizing: border-box; }
+    .conteudo .search-cidades .cidade-item {
+      width: 100%;
+      height: 70px;
+      background-color: #fff;
+      box-shadow: 0 0 20px 0.5px rgba(0, 0, 0, 0.63); }
