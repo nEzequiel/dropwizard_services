@@ -1,13 +1,16 @@
 *{
     margin:0;
     padding: 0;
+    box-sizing: border-box;
 }
 html{
     height: 100%;
+    padding-top:30px;
 }
 body{
+    padding-top:20px;
     height: 100%;
-    background:url("../img/night1.png");
+    background:url("../img/minimal.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: none;
@@ -20,22 +23,54 @@ body{
     background-color: rgb(23, 124, 240);
     border-radius: 15px;
     color: white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.botao-padrao:hover{
+    background-color: rgb(21, 98, 185);
+    transition: 0.35s linear all;
 }
 
 .top-nav{
+    position: fixed;
+    top:0;
     width: 100%;
-    height: 40px;
+    height: 46px;
     background: #fff;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    padding: 0 2%;
-    
+    padding: 0 2% 0 5%;
+    transition: 0.35s linear all;
+    overflow: hidden;
+    box-shadow: 1px 0  10px 1px rgba(0, 0, 0, 0.521);
+    a:hover{
+        text-decoration: none;
+        color:#DDD;
+    }
+    div{
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        h1{
+            font-size: 20px;
+        }
+        a{
+            color:rgb(44, 44, 44);
+        }
+        a:hover{
+            color:rgb(21, 98, 185);
+        }
+        
+    }
 }
 
 .top-nav:hover{
-    transition: 0.2s linear all;
+    transition: 0.35s linear all;
     height: 50px;
+
+   
 }
 
 .center-page{
@@ -55,45 +90,103 @@ body{
     box-shadow: 0 0  20px 0.5px rgba(0, 0, 0, 0.63);
 }
 
-.conteudo{
-    width: 100%;
-    background: rgba(255, 255, 255, 0.363);
-    height:90%;
-    padding: 5%;
-    align-self: center;
-    box-sizing: border-box;
-    box-shadow: 0 0  20px 0.5px rgba(0, 0, 0, 0.63);
-    .consulta{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        
-        form{
-            width: 50%;
-            display: flex;
-            justify-content: space-between;
-            align-self: center;
-            input[type="text"]{
-                border: none;
-                border-radius:15px;
-                width: 70%;
-                padding: 0 4%;
-            }
-        }
-    }
-}
 
 .main-cidades{
     width: 100%;
     height: 95%;
     background: rgb(255, 255, 255);
+    box-shadow: 0 0  20px 0.5px rgba(0, 0, 0, 0.63);
+    display: flex;
+    .cidade-top{
+        width: 33.333%;
+        background-blend-mode: multiply;
+    }
+    .cidade-top:hover{
+        background-blend-mode: normal;
+    }
+    .cidade-top:first-child{
+        background: url("../img/night.png"), rgba(14, 13, 13, 0.411);
+        background-size: cover;
+        border-right: 2px solid rgba(0, 0, 0, 0.39);
+    }
+    .cidade-top:nth-child(2){
+        background: url("../img/night1.jpg"), rgba(14, 13, 13, 0.411);
+        background-size: cover;
+    }
+    .cidade-top:last-child{
+        background: url("../img/night.png"), rgba(14, 13, 13, 0.411);
+        background-size: cover;
+        border-left: 2px solid rgba(0, 0, 0, 0.39);
+    }
+}
+.info{
+    padding:2%;
+    width: 100%;
+    height:100%;
+    background: rgba(12, 12, 12, 0.555);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    flex-direction:column;
+    
+    .btn-closeinfo{
+        align-self:flex-start;
+        border:none;
+        color:white;
+        background:rgba(0,0,0,0.0);
+        font-size: 1.6em;
+        transition:0.35s linear all;
+    }
+    .btn-closeinfo:hover{
+        color: rgb(23, 124, 240);
+        transition:0.35s linear all;
+    }
+
+    .infoCidades{
+        overflow:scroll;
+        width: 55%;
+        height: 75%;
+        background: white;
+        padding: 2%;
+        h1{
+            font-size: 2em;
+            height: 30px;
+        }
+    }
+
+    .info-subtitle{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+
+        h3{
+            font-size: 1em;
+            padding: 0 0 0 0.4%;
+        }
+    }
+    .avaliacao{
+        padding:2% 2%;
+        border-bottom:1px solid #ccc;
+        h2{
+            font-size:1.5em;
+        }
+    }
+    .tabela-pontos{
+        box-sizing:border-box;
+        h2{
+            font-size:1.5em;
+            padding:2% 2%;
+        }
+    }
 }
 
 footer{
     width:100%;
     height: 100%;
     background: #FFF;
+    box-shadow: 0 0  20px 0.5px rgba(0, 0, 0, 0.63);
 }
 
 

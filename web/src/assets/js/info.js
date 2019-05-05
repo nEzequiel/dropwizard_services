@@ -1,5 +1,3 @@
-
-
 const infoCidades=`
 <section class="info"> 
     <button class="btn-closeinfo">X</button>
@@ -128,18 +126,3 @@ const infoCidades=`
 const infoPonto=`
 
 `;
-
-
-
-
-
-
-
-
-//
-$(".cidade-item").on("click",(e)=>{
-    $("body").prepend(infoCidades)
-})
-$(document).on("click",".btn-closeinfo",(e)=>{
-    $(".info").remove()
-})

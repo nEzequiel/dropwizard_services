@@ -5,7 +5,7 @@ var concat=require("gulp-concat")
 var minify=require("gulp-cssmin")
 
 gulp.task("css",()=>{
-    return gulp.src(["./src/assets/scss/*.scss"])
+    return gulp.src(["./src/assets/scss/index.scss"])
         .pipe(sass().on('error', sass.logError))
         .pipe(concat("style.css"))
         .pipe(gulp.dest("./site/assets/css"))
@@ -14,6 +14,7 @@ gulp.task("css",()=>{
 
 gulp.task("js",()=>{
     return gulp.src(["./src/assets/js/*.js"])
+        .pipe(concat("main.js"))
         .pipe(gulp.dest("./site/assets/js"))
 
 })
