@@ -1,4 +1,46 @@
 
+let service="http://192.168.0.25:8080"
+
+
+function atualizaCidadesPesquisa(event){
+    $(".search-cidades").html(" ")
+    let url;
+    let pesquisa=$(".txtpesquisa").val()
+    
+    if(event!=undefined) event.preventDefault() 
+    
+    if(pesquisa==""){
+        url=service+"/cidade/catalog/0/a"
+    }else{
+        url=service+"/cidade/catalog/0/"+pesquisa
+    }
+    
+    fetch(url)
+        .then(resp=>resp.json())
+            .then(json=>{
+                json.forEach(cidade => {
+                    $(".search-cidades")
+                        .append(`<article id="${cidade.id}" class='cidade-item'>
+                            <h3>${cidade.nome}</h3>
+                            <p>${cidade.estado.nome},${cidade.pais.nome}</p>
+                            <p>População: ${cidade.populacao}</p>
+                            <h4></h4>
+                        </article>`)
+                });
+            })
+    
+}
+
+$(".btn-pesquisar").on("click",atualizaCidadesPesquisa)
+
+atualizaCidadesPesquisa()
+
+
+
+
+
+
+
 
 const infoCidades=`
 <section class="info"> 
@@ -17,7 +59,7 @@ const infoCidades=`
         </article>
         <article class="tabela-pontos">
             <h2>Pontos Turisticos</h2>
-            <table class="table table-striped">
+            <table class="table-pontos table table-striped">
                 <theader>
                     <tr>
                         <th scope="col">Nome</th>
@@ -25,97 +67,7 @@ const infoCidades=`
                         <th scope="col">Opções</th>
                     </tr>
                 </theader>
-                <tbody>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
-                    <tr>
-                        <td>Nome1</td>
-                        <td>Horarios1</td>
-                        <td>Opções1</td>
-                    </tr>
+                <tbody class="pontos-add">
                 </tbody>
                 <tfooter>
                 </tfooter>
@@ -128,17 +80,34 @@ const infoCidades=`
 const infoPonto=`
 
 `;
+function carregaCidadePosts(event){
+    
+    let cidade=event.target
+    let url=service+"/pontoturistico/cidade/"+$(cidade).attr("id")
+    let tableBody=$(".pontos-add")
 
 
+    $(".cidade").html(cidade.firstElementChild.innerHTML)
+    $(".info-subtitle").html(cidade.children[1].innerHTML)
+    
+    fetch(url)
+        .then(resp=>resp.json())
+            .then(json=>{
+                json.forEach(ponto => {
+                    console.log(ponto)
+                    tableBody.append(`<tr>
+                            <td>${ponto.nome}</td>
+                            <td>Abre: ${ponto.abertura},Fecha: ${ponto.fechamento}</td>
+                            <td><a href="#">Infomações </a></td>
+                        </tr>`)
 
-
-
-
-
-
+                })
+            })                    
+}
 //
-$(".cidade-item").on("click",(e)=>{
+$(document).on("click",".cidade-item",(e)=>{
     $("body").prepend(infoCidades)
+    carregaCidadePosts(e)
 })
 $(document).on("click",".btn-closeinfo",(e)=>{
     $(".info").remove()

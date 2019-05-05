@@ -191,7 +191,16 @@ footer {
     grid-column-gap: 50px;
     box-sizing: border-box; }
     .conteudo .search-cidades .cidade-item {
+      display: flex;
+      flex-direction: column;
       width: 100%;
-      height: 70px;
+      height: 75px;
       background-color: #fff;
+      color: #292828;
       box-shadow: 0 0 20px 0.5px rgba(0, 0, 0, 0.63); }
+      .conteudo .search-cidades .cidade-item h3 {
+        height: 20%;
+        font-size: 1.3em; }
+      .conteudo .search-cidades .cidade-item p {
+        height: 10%;
+        font-size: 0.9em; }
