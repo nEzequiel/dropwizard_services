@@ -40,8 +40,8 @@ public class PontoTuristico{
         this.numero=numero;
         this.bairro=bairro;
         this.cep=cep;
-        this.abertura=Time.valueOf("23:23:23");
-        this.fechamento=Time.valueOf("23:23:23");
+        this.abertura=Time.valueOf(abertura);
+        this.fechamento=Time.valueOf(fechamento);
     }
     
     public String getNome() {

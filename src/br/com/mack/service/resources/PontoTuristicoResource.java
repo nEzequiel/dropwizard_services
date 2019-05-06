@@ -38,6 +38,15 @@ public class PontoTuristicoResource implements TResource<PontoTuristico> {
             throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
         }
     }
+    @GET
+    @Path("/cidade/{id}")
+    public List<PontoTuristico> readCidadePontos(@PathParam("id") LongParam id) {
+        try{
+            return pontoDb.listCidadePontos(id.get().intValue());
+        }catch(Exception ex){
+            throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
+        }
+    }
 
     @GET
     @Path("{id}")

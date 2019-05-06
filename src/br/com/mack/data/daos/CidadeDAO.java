@@ -150,7 +150,7 @@ public class CidadeDAO implements TDAO<Cidade> {
         String sqlCommand="select * from Cidade where id > ? and nome like ?  limit 6;";
         PreparedStatement stm = conn.prepareStatement(sqlCommand);
         stm.setInt(1, lastId);
-        stm.setString(2, nomeLike+"%");
+        stm.setString(2,"%"+nomeLike+"%");
         try {
             ResultSet rs= query(stm);
             cidades=new ArrayList();
@@ -158,8 +158,8 @@ public class CidadeDAO implements TDAO<Cidade> {
             while(rs.next()){
                 int id=rs.getInt("id");
                 String nome=rs.getString("nome");
-                Estado estado=new Estado(rs.getInt("estado"));
-                Pais pais=new Pais(rs.getInt("pais"));
+                Estado estado=getEstado(rs.getInt("estado"));
+                Pais pais=getPais(rs.getInt("pais"));
                 int populacao=rs.getInt("populacao");
                 cidades.add(new Cidade(id,nome,estado,pais,populacao));
             }

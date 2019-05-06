@@ -131,6 +131,38 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
         
         return pontos;
     }
+    
+    public List<PontoTuristico> listCidadePontos(int idCidade) throws Exception {
+        List<PontoTuristico> pontos=null;
+        String sqlCommand="select * from PontoTuristico where cidade=?";
+        PreparedStatement stm=conn.prepareStatement(sqlCommand);
+        stm.setInt(1,idCidade);
+        try {
+            ResultSet rs=query(stm);
+            pontos=new ArrayList();
+            
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String nome=rs.getString("nome");
+                Cidade cidade=new Cidade(rs.getInt("cidade"));
+                int numero=rs.getInt("numero");
+                int cep=rs.getInt("cep");
+                String rua=rs.getString("rua");
+                String bairro=rs.getString("bairro");
+                String abertura=rs.getString("abertura");
+                String fechamento=rs.getString("fechamento");
+            
+                pontos.add(new PontoTuristico(id,nome,cidade,rua,numero,bairro,cep,abertura,fechamento));
+            }
+        } 
+        catch (Exception ex) {
+            System.out.println("Erro ao Buscar "+ex.getMessage());
+        }
+               
+        stm.close();
+        
+        return pontos;
+    }
 
     @Override
     public int delete(Long id) throws Exception {

@@ -45,7 +45,7 @@ public class CidadeResource implements TResource<Cidade> {
     @Path("/catalog/{lastId}/{search}")
     public List<Cidade> readCatalog(@PathParam("search") String nome,@PathParam("lastId") LongParam lastId){
         try{
-            return cidadeDb.listCatalog("Ita",4);
+            return cidadeDb.listCatalog(nome,lastId.get().intValue());
         }catch(Exception ex){
            throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
         }
