@@ -1,4 +1,4 @@
-let service="http://localhost:8080"
+
 
 
 function atualizaCidadesPesquisa(event){
@@ -6,28 +6,32 @@ function atualizaCidadesPesquisa(event){
     let url;
     let pesquisa=$(".txtpesquisa").val()
     
-    if(event!=undefined) event.preventDefault() 
+    if(event) event.preventDefault() 
     
     if(pesquisa==""){
-        url=service+"/cidade/catalog/0/a"
+        url="/cidade/catalog/0/default"
     }else{
-        url=service+"/cidade/catalog/0/"+pesquisa
+        url="/cidade/catalog/0/"+pesquisa
     }
     
-    fetch(url)
-        .then(resp=>resp.json())
-            .then(json=>{
-                json.forEach(cidade => {
-                    $(".search-cidades")
-                        .append(`<article id="${cidade.id}" class='cidade-item'>
+    getJSON(url)
+        .then(cidades=>{            
+            cidades.forEach(cidade => {
+                $(".search-cidades")
+                    .append(`<article id="${cidade.id}" class='cidade-item'>
+                        <div>
                             <h3>${cidade.nome}</h3>
                             <p>${cidade.estado.nome},${cidade.pais.nome}</p>
                             <p>População: ${cidade.populacao}</p>
                             <h4></h4>
-                        </article>`)
-                });
-            })
-    
+                        </div>
+                        <button>
+                            +
+                        </button>
+                    </article>`
+                    )
+            });
+        })
 }
 
 $(".btn-pesquisar").on("click",atualizaCidadesPesquisa)

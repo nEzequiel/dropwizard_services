@@ -1,3 +1,8 @@
+Delete c,p from Comentario c inner join PontoTuristico p on p.id=c.pontoTuristico  where p.cidade=4
+
+
+drop table Cidade;
+
 Create table Pais(
     id int primary key auto_increment,
     nome varchar(50) not null
@@ -20,6 +25,8 @@ Create table Cidade(
     foreign key(pais)references Pais(id)
 );
 
+
+
 Create table PontoTuristico(
     id int primary key auto_increment,
     nome varchar(50) not null,
@@ -30,8 +37,9 @@ Create table PontoTuristico(
     cep int not null,
     abertura Time not null,
     fechamento Time not null,
-    foreign key(cidade) references Cidade(id)
+    foreign key(cidade) references Cidade(id) on delete cascade
 );
+
 
 Create table Usuario(
     id int primary key auto_increment,
@@ -43,7 +51,7 @@ Create table Usuario(
     senha varchar(40) not null
 );
 
-select *from Comentario where pontoTuristico=2;
+
 Create table Avaliacao(
     id int primary key auto_increment,
     usuario int,
@@ -60,8 +68,8 @@ Create table Comentario(
     pontoTuristico int,
     dataAvaliacao Date,
     texto varchar(70) not null,
-    foreign key(usuario) references Usuario(id),
-    foreign key(pontoTuristico) references PontoTuristico(id)
+    foreign key(usuario) references Usuario(id) on delete cascade,
+    foreign key(pontoTuristico) references PontoTuristico(id) on delete cascade
 );
 
 insert into Pais(nome) values('Brasil');
@@ -78,3 +86,5 @@ insert into Estado(nome,pais) values('Luisiana',2);
 commit;
 
 UPDATE PontoTuristico set nome='10', set cidade=1, set rua='da', set numero=3, set bairro='da', set cep=32 where id=1;
+
+select c.id,c.nome,c.populacao, e.nome, p.nome from Cidade as c inner join Pais as p on p.id=c.pais inner join Estado as e on e.id=c.estado  where c.id > 0 and c.nome like 'a%'  limit 6

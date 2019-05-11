@@ -163,11 +163,54 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
         
         return pontos;
     }
+    
+    public List<PontoTuristico> listCatalog(String nomeLike,int lastId) throws SQLException {
+        String sqlCommand="";
+        PreparedStatement stm ; conn.prepareStatement(sqlCommand);
+        if(nomeLike.equals("default")){
+            sqlCommand="select p.id,p.cep,p.abertura,p.fechamento,p.nome,p.rua,p.numero,p.bairro,c.nome as cidade from PontoTuristico as p inner join Cidade as c on c.id=p.cidade where p.id > ?  limit 6";
+            stm=conn.prepareStatement(sqlCommand);
+            stm.setInt(1, lastId);
+        }
+        else{
+            sqlCommand="select p.id,p.cep,p.abertura,p.fechamento,p.nome,p.rua,p.numero,p.bairro,c.nome from PontoTuristico as p inner join Cidade as c on c.id=p.cidade where p.id > ? and p.nome like ?  limit 6"; 
+            stm=conn.prepareStatement(sqlCommand);
+            stm.setInt(1, lastId);
+            stm.setString(2,"%"+nomeLike+"%");
+        }
+        
+        List<PontoTuristico> pontos=null;
+        
+        
+        try {
+            ResultSet rs= query(stm);
+            pontos=new ArrayList();
+            
+            while(rs.next()){
+                int id=rs.getInt("id");
+                String nome=rs.getString("nome");
+                Cidade cidade=new Cidade(rs.getString("cidade"));
+                int numero=rs.getInt("numero");
+                int cep=rs.getInt("cep");
+                String rua=rs.getString("rua");
+                String bairro=rs.getString("bairro");
+                String abertura=rs.getString("abertura");
+                String fechamento=rs.getString("fechamento");
+            
+                pontos.add(new PontoTuristico(id,nome,cidade,rua,numero,bairro,cep,abertura,fechamento));
+            }
+        }
+        catch (Exception ex) {
+            System.out.println("Erro ao Buscar "+ex.getMessage());
+        }
+        stm.close();
+        return pontos;
+    }
 
     @Override
     public int delete(Long id) throws Exception {
         int retorno=0;
-        String sqlCommand="Delete from PontoTuristico where id=?";
+        String sqlCommand="Delete  from PontoTuristico where id=?";
         PreparedStatement stm=conn.prepareStatement(sqlCommand); 
         stm.setLong(1,id);
         

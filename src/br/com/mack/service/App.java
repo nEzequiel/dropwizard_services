@@ -9,11 +9,9 @@ import br.com.mack.service.resources.CidadeResource;
 import br.com.mack.service.resources.PontoTuristicoResource;
 import br.com.mack.data.daos.CidadeDAO;
 import br.com.mack.data.DataAccess;
-import br.com.mack.data.daos.AvaliacaoDAO;
 import br.com.mack.data.daos.ComentarioDAO;
 import br.com.mack.data.daos.PontoTuristicoDAO;
 import br.com.mack.data.daos.UsuarioDAO;
-import br.com.mack.service.resources.AvaliacaoResource;
 import br.com.mack.service.resources.ComentarioResource;
 import br.com.mack.service.resources.UsuarioResource;
 import io.dropwizard.Application;
@@ -47,9 +45,6 @@ public class App extends Application<Configuration>{
         
         UsuarioDAO usuarioDAO=new UsuarioDAO(globalAccess);
         environment.jersey().register(new UsuarioResource(usuarioDAO));
-        
-        AvaliacaoDAO avaliacaoDAO=new AvaliacaoDAO(globalAccess);
-        environment.jersey().register(new AvaliacaoResource(avaliacaoDAO));
         
         ComentarioDAO comentarioDAO=new ComentarioDAO(globalAccess);
         environment.jersey().register(new ComentarioResource(comentarioDAO));

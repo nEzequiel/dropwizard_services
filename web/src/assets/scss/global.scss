@@ -27,6 +27,13 @@ body{
     align-items:center;
     justify-content:center;
 }
+.botao-padrao.btn-novo{
+    background-color: rgb(69, 197, 80);
+}
+.botao-padrao.btn-novo:hover{
+    background-color: rgb(35, 112, 41);
+    transition: 0.35s linear all;
+}
 .botao-padrao:hover{
     background-color: rgb(21, 98, 185);
     transition: 0.35s linear all;
@@ -66,28 +73,36 @@ body{
     }
 }
 
-.top-nav:hover{
-    transition: 0.35s linear all;
-    height: 50px;
-
-   
-}
 
 .center-page{
     width: 100%;
     display: grid;
     grid-template-columns: 1;
-    grid-template-rows: 1fr 2fr 1.5fr 0.5fr;
-    flex-direction: column;
+    grid-template-rows: 1fr 2fr 1.3fr 0.5fr;
     padding: 2% 20%;
 }
 
 .apresentacao{
     background: rgb(255, 255, 255);
-    height: 100%;
     width: 100%;
-    padding: 8% 5%;
+    padding: 8% 10%;
     box-shadow: 0 0  20px 0.5px rgba(0, 0, 0, 0.63);
+    display: flex;
+    justify-content: space-between;
+    img{
+        background: #ccc;
+        width: 30%;
+        height: 90%;
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-right: 5%;
+        p{
+            align-self: flex-end;
+        }
+    }
 }
 
 
@@ -95,14 +110,30 @@ body{
     width: 100%;
     height: 95%;
     background: rgb(255, 255, 255);
-    box-shadow: 0 0  20px 0.5px rgba(0, 0, 0, 0.63);
+    box-shadow: 0 0  20px 0.5px rgba(0, 0, 0, 0.678);
     display: flex;
     .cidade-top{
         width: 33.333%;
         background-blend-mode: multiply;
+        padding: 2%;
+        color: white;
+        div{
+            width: 70%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 4px 4px 2px rgb(20, 20, 20);
+            transition: 0.2s linear all;
+        }
     }
     .cidade-top:hover{
         background-blend-mode: normal;
+    }
+    .cidade-top:hover div{
+        width: 90%;
+        transition: 0.2s linear all;
     }
     .cidade-top:first-child{
         background: url("../img/night.png"), rgba(14, 13, 13, 0.411);
@@ -142,7 +173,7 @@ body{
         transition:0.35s linear all;
     }
 
-    .infoCidades{
+    .info-box{
         overflow:scroll;
         width: 55%;
         height: 75%;
@@ -151,6 +182,17 @@ body{
         h1{
             font-size: 2em;
             height: 30px;
+        }
+    }
+    .box-message{
+        height: 35%;
+        width: 40%;
+        
+        margin-top: 15%;
+        background-color: rgba(255, 255, 255, 0.842);
+        border-radius:50px;
+        h1{
+            color: rgb(28, 31, 28);
         }
     }
 
@@ -182,11 +224,33 @@ body{
     }
 }
 
-footer{
+.foot{
     width:100%;
     height: 100%;
-    background: #FFF;
+    background: linear-gradient(to right, #333,rgb(43, 43, 43));
     box-shadow: 0 0  20px 0.5px rgba(0, 0, 0, 0.63);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2% 5%;
+    color:white;
+    .redes{
+        display: flex;
+        align-items: center;
+        width: 15%;
+        justify-content: space-around;
+        img{
+            width: 30px;
+            height: 30px;
+        }
+    }
+    .dev{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 50%;
+    }
+
 }
 
 

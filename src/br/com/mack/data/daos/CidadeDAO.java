@@ -146,11 +146,25 @@ public class CidadeDAO implements TDAO<Cidade> {
 
     
     public List<Cidade> listCatalog(String nomeLike,int lastId) throws SQLException {
+        String sqlCommand="";
+        PreparedStatement stm ;
+        if(nomeLike.equals("default")){
+            sqlCommand="select c.id,c.nome,c.populacao, e.nome, p.nome from "
+                + "Cidade as c inner join Pais as p on p.id=c.pais inner join Estado as e "
+                + "on e.id=c.estado  where c.id >? limit 6";        
+            stm= conn.prepareStatement(sqlCommand);
+            stm.setInt(1, lastId);
+        }else{
+            sqlCommand="select c.id,c.nome,c.populacao, e.nome, p.nome from "
+                + "Cidade as c inner join Pais as p on p.id=c.pais inner join Estado as e "
+                + "on e.id=c.estado  where c.id >? and c.nome like ? limit 6";
+            stm= conn.prepareStatement(sqlCommand);
+            stm.setInt(1, lastId);
+            stm.setString(2,"%"+nomeLike+"%");
+        }
+        
         List<Cidade> cidades=null;
-        String sqlCommand="select * from Cidade where id > ? and nome like ?  limit 6;";
-        PreparedStatement stm = conn.prepareStatement(sqlCommand);
-        stm.setInt(1, lastId);
-        stm.setString(2,"%"+nomeLike+"%");
+        
         try {
             ResultSet rs= query(stm);
             cidades=new ArrayList();
@@ -158,8 +172,8 @@ public class CidadeDAO implements TDAO<Cidade> {
             while(rs.next()){
                 int id=rs.getInt("id");
                 String nome=rs.getString("nome");
-                Estado estado=getEstado(rs.getInt("estado"));
-                Pais pais=getPais(rs.getInt("pais"));
+                Pais pais=new Pais(0,rs.getString("p.nome"));
+                Estado estado=new Estado(0,rs.getString("e.nome"),pais);
                 int populacao=rs.getInt("populacao");
                 cidades.add(new Cidade(id,nome,estado,pais,populacao));
             }
@@ -174,8 +188,9 @@ public class CidadeDAO implements TDAO<Cidade> {
     @Override
     public int delete(Long id) throws SQLException {
         int retorno=0;
-        String sqlCommand="Delete from Cidade where id=?";
-        PreparedStatement stm=conn.prepareStatement(sqlCommand); 
+        String sqlCommand="delete from Cidade where id=?";
+        
+        PreparedStatement stm=conn.prepareStatement(sqlCommand);
         stm.setLong(1,id);
         
         try {

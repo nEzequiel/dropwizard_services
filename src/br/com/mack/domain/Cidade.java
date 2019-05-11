@@ -23,6 +23,9 @@ public class Cidade {
     public Cidade(int id){
         this.id=id;
     }
+    public Cidade(String nome){
+        this.nome=nome;
+    }
     public Cidade(String nome,Estado estado,Pais pais, int populacao){
         this.nome=nome;
         this.estado=estado;

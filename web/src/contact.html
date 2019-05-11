@@ -15,18 +15,36 @@
             <a href="admin.html"><h1>Administrativo</h1></a>
             <a href="contact.html"><h1>Fale Conosco</h1></a>
         </div>
-        <button class="botao-padrao btn-login">Login</button>
+        <a href="login.html" class="botao-padrao btn-login">Login</a>   
     </nav>
     <section class="contact">
-        <header class="fcontact-form">
+        <header class="contact-header">
             <div>
-                <h1 class="title main-title">Fale conosco</h1>
-                <p class="subtitle">Responderemos a sua solicitação via e-mail.</p>
+                <h1 class="display-3 title main-title">Fale conosco</h1>
             </div>
         </header>
-        
-        <footer>
-            
+        <article class="form-box">
+            <h1 class="display-5">Escreva sua mensagem aqui: </h1>
+            <form>
+                <input name="nome" type="text" placeholder="Seu nome completo...">
+                <input name="email" type="text" placeholder="Seu e-mail ...">
+                <textarea name="mensagem" id="" cols="30" rows="10" placeholder="Mensagem de dúvida ou sugestão.."></textarea>
+                <div>
+                    <input class="botao-padrao" name="enviar" value="Enviar"type="submit">
+                    <input class="botao-padrao" name="cancelar" value="Cancelar"type="reset">
+                </div>
+            </form>
+        </article>
+             
+        <footer class="foot">
+            <div class="redes">
+                <img src="./assets/img/facebook.png" alt="">
+                <img src="./assets/img/twiter.png" alt="">
+                <img src="./assets/img/youtube.png" alt="">
+            </div>
+            <div class="dev">
+                <span>Ezequiel Neves - 2019</span>
+            </div>
         </footer>
     </section>
 </body>

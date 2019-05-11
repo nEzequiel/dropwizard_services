@@ -7,11 +7,10 @@ package br.com.mack.service.resources;
 
 /**
  *
- * @author ezequiel
+   * @author ezequiel
  */
 import br.com.mack.data.daos.CidadeDAO;
 import br.com.mack.data.daos.PontoTuristicoDAO;
-import br.com.mack.domain.Avaliacao;
 import br.com.mack.domain.Comentario;
 import br.com.mack.domain.PontoTuristico;
 import br.com.mack.service.TResource;
@@ -47,7 +46,17 @@ public class PontoTuristicoResource implements TResource<PontoTuristico> {
             throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
         }
     }
-
+    
+    @GET
+    @Path("/catalog/{lastId}/{search}")
+    public List<PontoTuristico> readPontos(@PathParam("search") String nome,@PathParam("lastId") LongParam lastId){
+        try{
+            return pontoDb.listCatalog(nome,lastId.get().intValue());
+        }catch(Exception ex){
+           throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
+        }
+    }
+    
     @GET
     @Path("{id}")
     public PontoTuristico readThis(@PathParam("id") LongParam id) {

@@ -1,21 +1,20 @@
 function carregaPonto(e){
     e.preventDefault()
     $(".tabela-pontos").remove()
-    let elem=$(e.target).parent().parent()
     let id=$(e.target).parent().attr("id")
     let url=service+`/pontoturistico/${id}`
     
     fetch(url)
         .then(resp=>resp.json())
             .then(ponto=>{
-                $(".infoCidades").append(`
-                    <article class="ponto "id="${ponto.id}">
+                $(".info-box").append(`
+                    <article class="ponto" id="${ponto.id}">
                         <h2>${ponto.nome}</h2>
                         <h3>Endereço: ${ponto.rua}, ${ponto.numero}, ${ponto.bairro},${ponto.cep}</h3>
                         
                     </article>
                     <article class="comentarios">
-                        <form class="post-comentario">
+                        <form name="formComentario"class="post-comentario">
                             <textarea class="comentario" name="comentario" placeholder="Deixe seu comentário..."> </textarea>
                             <div class="botoes-comentarios">
                                 <input type="submit" class="enviar" value="Enviar"/>
@@ -28,11 +27,15 @@ function carregaPonto(e){
                     </article>
                 `)
             })
-    url=service+`/comentario/getAll/${id}`
+    carregaComentarios()
+}
+
+function carregaComentarios(){
+    let id=$(".ponto").attr("id")
     
-    fetch(url)
-        .then(resp=>resp.json())
-            .then(comentarios=>{
+    $(".list-comentarios").html("")
+    getJSON(`/comentario/getAll/${id}`)
+        .then(comentarios=>{
                 comentarios.forEach(comentario => {
                     $(".list-comentarios").append(`
                         <article class="box-comentario" id="${comentario.id}">
@@ -42,36 +45,23 @@ function carregaPonto(e){
                     `)
                 });
             })
-                
 }
 
-
 function postarComentario(e){
-    let url=service+`/comentario`
     e.preventDefault()
-    let comentario=$(".comentario").val()
+
+    let comentario=formComentario.comentario.value
     let usuario=1
     let ponto=$(".ponto").attr("id")
-    let dataPost=new Date()
     
-    var data=JSON.stringify({
-        "data":dataPost,
+    let dados={
+        "data":new Date(),
         "texto":comentario,
         "usuario":usuario,
         "ponto":parseInt(ponto)
-    })
-        
-    fetch(url,{
-        method:"post",
-        body:data,
-        headers:{'Content-Type': 'application/json'}
-    }).then(resp=>{
-        if(resp.ok){
-            console.log("Comentario feito com sucesso")
-        }
-    })
-        
-    
+    }
+    postJSON("/comentario",dados)   
+    carregaComentarios()
 }
 
 
