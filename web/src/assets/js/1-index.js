@@ -40,7 +40,7 @@ function putJSON(path,dados,id,painel){
                 successMessage("Alterado com sucesso!!!")
                 painel()
             } else{
-                errorMessage("Erro ao excluir!!!")
+                errorMessage("Erro ao Alterar!!!")
             } 
         })
 }
@@ -78,6 +78,8 @@ function getFormAsJSON(form){
         if(!isNaN(value)){
             value=parseInt(value)
         }
+        if(value=="" || value==0)
+            return false
         dadosJSON[key]=value
     }
     return dadosJSON

@@ -40,7 +40,7 @@ function putJSON(path,dados,id,painel){
                 successMessage("Alterado com sucesso!!!")
                 painel()
             } else{
-                errorMessage("Erro ao excluir!!!")
+                errorMessage("Erro ao Alterar!!!")
             } 
         })
 }
@@ -78,6 +78,8 @@ function getFormAsJSON(form){
         if(!isNaN(value)){
             value=parseInt(value)
         }
+        if(value=="" || value==0)
+            return false
         dadosJSON[key]=value
     }
     return dadosJSON
@@ -249,11 +251,17 @@ function GravarCidade(e){
     let form=getFormAsJSON(formCidade)
     let cidadeID=formCidade.id.value
     
-    if(cidadeID!=''){
-        putJSON("/cidade",form,cidadeID,carregaPainelCidades)    
+    if(form){
+        if(cidadeID!=''){
+            putJSON("/cidade",form,cidadeID,carregaPainelCidades)    
+        }else{
+            postJSON("/cidade",form,carregaPainelCidades)
+        }
     }else{
-        postJSON("/cidade",form,carregaPainelCidades)
+        $(".validation").remove()
+        $(".box-form").append("<p class='validation'>Todos os campos são de preenchimento obrigatorio!!!</p>")
     }
+
 }
 
 function cadastrarPonto(){
@@ -289,13 +297,18 @@ function GravarPonto(e){
     e.preventDefault()
     let form=getFormAsJSON(formPonto)
     let pontoID=formPonto.id.value
-    
-    if(pontoID!=''){
-        putJSON("/pontoturistico",form,pontoID,carregaPainelPontos)  
-            .then(carregaPainelPontos)  
+
+    if(form){
+        if(pontoID!=''){
+            putJSON("/pontoturistico",form,pontoID,carregaPainelPontos)  
+                .then(carregaPainelPontos)  
+        }else{
+            postJSON("/pontoturistico",form,carregaPainelPontos)
+                .then(carregaPainelPontos)  
+        }
     }else{
-        postJSON("/pontoturistico",form,carregaPainelPontos)
-            .then(carregaPainelPontos)  
+        $(".validation").remove()
+        $(".box-form").append("<p class='validation'>Todos os campos são de preenchimento obrigatorio!!!</p>")
     }
 }
 function deletePonto(e){
@@ -476,7 +489,6 @@ $(document).on("click",".btn-painelPontos",carregaPainelPontos)
 
 $(document).on("click",".btn-cidade",carregaPainelCidadeTable)
 $(document).on("click",".btn-painelCidades",carregaPainelCidades)
-
 function carregaPonto(e){
     e.preventDefault()
     $(".tabela-pontos").remove()
