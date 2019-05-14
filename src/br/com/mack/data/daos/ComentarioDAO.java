@@ -37,15 +37,14 @@ public class ComentarioDAO implements TDAO<Comentario> {
         return rs;
     }
     
-    public int execute(PreparedStatement stm) throws SQLException, ClassNotFoundException{
+    public int execute(PreparedStatement stm) throws SQLException, ClassNotFoundException, DatabaseCommandException{
         try{
-        int retorno=stm.executeUpdate();
-        return retorno;
+            int retorno=stm.executeUpdate();
+            return retorno;
         }
-        catch(Exception e){
-            System.out.println(e.getMessage());
+        catch(Exception ex){
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
-        return 0;
     }
 
     @Override
@@ -60,7 +59,7 @@ public class ComentarioDAO implements TDAO<Comentario> {
         try{
             retorno=execute(stm);
         }catch(Exception ex){
-            throw new DatabaseCommandException("Não foi possivel executar o comando de inserção !!!"+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
         return retorno;
     }   
@@ -78,7 +77,7 @@ public class ComentarioDAO implements TDAO<Comentario> {
         try{
             retorno=execute(stm);
         }catch(SQLException | ClassNotFoundException ex){
-            throw new DatabaseCommandException("Não foi possivel executar o comando de atualização !!!"+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
         return retorno;
     }
@@ -104,7 +103,7 @@ public class ComentarioDAO implements TDAO<Comentario> {
             }
         } 
         catch (SQLException | ClassNotFoundException ex) {
-            throw new DatabaseCommandException("Erro na busca dos dados!!!"+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
                
         stm.close();
@@ -124,7 +123,7 @@ public class ComentarioDAO implements TDAO<Comentario> {
             retorno=execute(stm);
         } 
         catch (Exception ex) {
-            throw new DatabaseCommandException("Erro ao excluir "+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
         
         stm.close();
@@ -149,7 +148,7 @@ public class ComentarioDAO implements TDAO<Comentario> {
             comentario=new Comentario(id,usuario,ponto,data,texto);
         } 
         catch (Exception ex) {
-            throw new DatabaseCommandException("Erro na busca dos dados!!!"+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
                 
         stm.close();

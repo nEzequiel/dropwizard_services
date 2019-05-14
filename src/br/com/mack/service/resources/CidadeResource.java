@@ -96,10 +96,10 @@ public class CidadeResource implements TResource<Cidade> {
     @Override
     public Response delete(@PathParam("id") LongParam id) {
         try {
-            cidadeDb.delete(id.get());
+            cidadeDb.delete(id.get().longValue());
             return Response.ok().build();
             
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             throw new WebApplicationException("Cidade de id: "+id.get()+" não encontrada!",404);
         }
     }

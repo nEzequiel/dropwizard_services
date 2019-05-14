@@ -145,7 +145,7 @@ public class CidadeDAO implements TDAO<Cidade> {
     }
 
     
-    public List<Cidade> listCatalog(String nomeLike,int lastId) throws SQLException {
+    public List<Cidade> listCatalog(String nomeLike,int lastId) throws SQLException, DatabaseCommandException {
         String sqlCommand="";
         PreparedStatement stm ;
         if(nomeLike.equals("default")){
@@ -179,14 +179,14 @@ public class CidadeDAO implements TDAO<Cidade> {
             }
         }
         catch (Exception ex) {
-            System.out.println("Erro ao Buscar "+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
         stm.close();
         return cidades;
     }
     
     @Override
-    public int delete(Long id) throws SQLException {
+    public int delete(Long id) throws SQLException, DatabaseCommandException {
         int retorno=0;
         String sqlCommand="delete from Cidade where id=?";
         
@@ -197,7 +197,7 @@ public class CidadeDAO implements TDAO<Cidade> {
             retorno=execute(stm);
         } 
         catch (Exception ex) {
-            System.out.println("Erro ao excluir "+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
         
         stm.close();
@@ -278,7 +278,7 @@ public class CidadeDAO implements TDAO<Cidade> {
         return pais;
     }
     
-    public Estado getEstado(int id) throws SQLException {
+    public Estado getEstado(int id) throws SQLException, DatabaseCommandException {
         Estado estado=null;
         String sqlCommand="select * from Estado where id=?";
         PreparedStatement stm=conn.prepareStatement(sqlCommand); 
@@ -287,14 +287,13 @@ public class CidadeDAO implements TDAO<Cidade> {
         try {
             ResultSet rs= rs=query(stm);
             rs.next();
-            
+        
             String nome=rs.getString("nome");
-            Pais pais=new Pais(rs.getInt("pais"));
-           
+            Pais pais=new Pais(rs.getInt("pais"));        
             estado=new Estado(id,nome,pais);
         } 
         catch (Exception ex) {
-            System.out.println("Erro ao Buscar "+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
                
         stm.close();

@@ -9,6 +9,7 @@ import br.com.mack.data.DataAccess;
 import br.com.mack.data.TDAO;
 import br.com.mack.domain.Cidade;
 import br.com.mack.domain.PontoTuristico;
+import br.com.mack.exception.DatabaseCommandException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -53,14 +54,14 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
         stm.setString(3,ponto.getRua());
         stm.setInt(4,ponto.getNumero());
         stm.setString(5,ponto.getBairro());
-        stm.setInt(6,ponto.getCep());
+        stm.setString(6,ponto.getCep());
         stm.setTime(7,ponto.getAbertura());
         stm.setTime(8,ponto.getFechamento());
         
         try{
            retorno=execute(stm); 
         }catch(Exception ex){
-            System.out.println("Erro ao inserir!!!" +ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
         
         stm.close();
@@ -74,7 +75,6 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
         String sqlCommand="UPDATE PontoTuristico "
                 +"set nome=?,cidade=?,rua=?, numero=?, bairro=?,cep=?,"+
                 "abertura=?, fechamento=? where id=?";
-                
         
         PreparedStatement stm=conn.prepareStatement(sqlCommand);
         stm.setString(1,ponto.getNome());
@@ -82,7 +82,7 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
         stm.setString(3,ponto.getRua());
         stm.setInt(4,ponto.getNumero());
         stm.setString(5,ponto.getBairro());
-        stm.setInt(6,ponto.getCep());
+        stm.setString(6,ponto.getCep());
         stm.setTime(7,ponto.getAbertura());
         stm.setTime(8,ponto.getFechamento());
         stm.setLong(9,id);
@@ -90,7 +90,7 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
         try{
            retorno=execute(stm); 
         }catch(Exception ex){
-            System.out.println("Erro ao atualizar!!!" +ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
         
         
@@ -114,7 +114,7 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
                 String nome=rs.getString("nome");
                 Cidade cidade=new Cidade(rs.getInt("cidade"));
                 int numero=rs.getInt("numero");
-                int cep=rs.getInt("cep");
+                String cep=rs.getString("cep");
                 String rua=rs.getString("rua");
                 String bairro=rs.getString("bairro");
                 String abertura=rs.getString("abertura");
@@ -124,7 +124,7 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
             }
         } 
         catch (Exception ex) {
-            System.out.println("Erro ao Buscar "+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
                
         stm.close();
@@ -146,7 +146,7 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
                 String nome=rs.getString("nome");
                 Cidade cidade=new Cidade(rs.getInt("cidade"));
                 int numero=rs.getInt("numero");
-                int cep=rs.getInt("cep");
+                String cep=rs.getString("cep");
                 String rua=rs.getString("rua");
                 String bairro=rs.getString("bairro");
                 String abertura=rs.getString("abertura");
@@ -156,7 +156,7 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
             }
         } 
         catch (Exception ex) {
-            System.out.println("Erro ao Buscar "+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
                
         stm.close();
@@ -164,7 +164,7 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
         return pontos;
     }
     
-    public List<PontoTuristico> listCatalog(String nomeLike,int lastId) throws SQLException {
+    public List<PontoTuristico> listCatalog(String nomeLike,int lastId) throws SQLException, DatabaseCommandException {
         String sqlCommand="";
         PreparedStatement stm ; conn.prepareStatement(sqlCommand);
         if(nomeLike.equals("default")){
@@ -181,7 +181,6 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
         
         List<PontoTuristico> pontos=null;
         
-        
         try {
             ResultSet rs= query(stm);
             pontos=new ArrayList();
@@ -191,7 +190,7 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
                 String nome=rs.getString("nome");
                 Cidade cidade=new Cidade(rs.getString("cidade"));
                 int numero=rs.getInt("numero");
-                int cep=rs.getInt("cep");
+                String cep=rs.getString("cep");
                 String rua=rs.getString("rua");
                 String bairro=rs.getString("bairro");
                 String abertura=rs.getString("abertura");
@@ -201,7 +200,7 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
             }
         }
         catch (Exception ex) {
-            System.out.println("Erro ao Buscar "+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
         stm.close();
         return pontos;
@@ -243,7 +242,7 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
                 String rua=rs.getString("numero");
                 String bairro=rs.getString("bairro");
                 int numero=rs.getInt("numero");
-                int cep=rs.getInt("cep");
+                String cep=rs.getString("cep");
                 String abertura=rs.getString("abertura");
                 String fechamento=rs.getString("fechamento");
                 
@@ -251,13 +250,11 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
             }
         } 
         catch (Exception ex) {
-            System.out.println("Erro ao Buscar "+ex.getMessage());
+            throw new DatabaseCommandException("Erro ao executar o comando sql"+ex.getMessage());
         }
-
         
         stm.close();
         
         return ponto;
     }
-
 }

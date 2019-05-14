@@ -21,7 +21,7 @@ public class PontoTuristico{
     private String rua;
     private int numero;
     private String bairro;
-    private int cep;
+    private String cep;
     private Time abertura;
     private Time fechamento;
 
@@ -32,7 +32,7 @@ public class PontoTuristico{
         this.id=id;
     }
     
-    public PontoTuristico(int id,String nome,Cidade cidade,String rua,int numero,String bairro,int cep,String abertura,String fechamento){
+    public PontoTuristico(int id,String nome,Cidade cidade,String rua,int numero,String bairro,String cep,String abertura,String fechamento){
         this.id=id;
         this.nome=nome;
         this.cidade=cidade;
@@ -76,11 +76,11 @@ public class PontoTuristico{
         this.bairro = bairro;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
