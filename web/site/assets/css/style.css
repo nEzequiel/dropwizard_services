@@ -105,7 +105,7 @@ html {
 body {
   padding-top: 20px;
   height: 100%;
-  background: url("../img/city.jpg");
+  background: url("../img/minimal.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: none;
@@ -212,14 +212,14 @@ body {
     width: 90%;
     transition: 0.2s linear all; }
   .main-cidades .cidade-top:first-child {
-    background: url("../img/louvre.jpg"), rgba(14, 13, 13, 0.411);
+    background: url("../img/night.png"), rgba(14, 13, 13, 0.411);
     background-size: cover;
     border-right: 2px solid rgba(0, 0, 0, 0.39); }
   .main-cidades .cidade-top:nth-child(2) {
-    background: url("../img/sp.jpg"), rgba(14, 13, 13, 0.411);
+    background: url("../img/night1.jpg"), rgba(14, 13, 13, 0.411);
     background-size: cover; }
   .main-cidades .cidade-top:last-child {
-    background: url("../img/ny.jpg"), rgba(14, 13, 13, 0.411);
+    background: url("../img/night.png"), rgba(14, 13, 13, 0.411);
     background-size: cover;
     border-left: 2px solid rgba(0, 0, 0, 0.39); }
 
@@ -232,9 +232,6 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column; }
-  .info input[type="text"], .info select, .info textarea {
-    background: rgba(238, 238, 238, 0.815);
-    border: 1px solid #bdbdbd; }
   .info .btn-closeinfo {
     align-self: flex-start;
     border: none;
@@ -259,27 +256,9 @@ body {
     width: 40%;
     margin-top: 15%;
     background-color: rgba(255, 255, 255, 0.842);
-    border-radius: 50px; }
+    border-radius: 20px; }
     .info .box-message h1 {
       color: #1c1f1c; }
-  .info .box-form {
-    overflow: hidden; }
-  .info .form-cadastro {
-    padding: 10% 5%;
-    display: grid;
-    grid-template-columns: 1fr 1fr; }
-    .info .form-cadastro input[type="text"] {
-      width: 80%;
-      height: 30%;
-      padding: 4%; }
-    .info .form-cadastro select {
-      width: 80%;
-      height: 30%;
-      padding: 4%; }
-    .info .form-cadastro div {
-      display: flex;
-      justify-content: space-between;
-      width: 80%; }
   .info .info-subtitle {
     display: flex;
     justify-content: space-between;
@@ -432,6 +411,10 @@ body {
     .conteudo .search-cidades .cidade-item:hover button {
       width: 35px;
       transition: 0.2s linear all; }
+
+.box-comentario {
+  width: 100%;
+  display: flex; }
 
 .contact {
   display: grid;

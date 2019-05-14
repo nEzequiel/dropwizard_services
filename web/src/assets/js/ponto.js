@@ -17,7 +17,7 @@ function carregaPonto(e){
                         <form name="formComentario"class="post-comentario">
                             <textarea class="comentario" name="comentario" placeholder="Deixe seu comentário..."> </textarea>
                             <div class="botoes-comentarios">
-                                <input type="submit" class="enviar" value="Enviar"/>
+                                <input type="submit" class="enviar-comentario" value="Enviar"/>
                                 <input type="reset" class="cancelar" value="Cancelar"/>
                             </div>
                         </form>
@@ -26,8 +26,9 @@ function carregaPonto(e){
                         </div>
                     </article>
                 `)
+            }).then(()=>{
+                carregaComentarios()  
             })
-    carregaComentarios()
 }
 
 function carregaComentarios(){
@@ -60,9 +61,11 @@ function postarComentario(e){
         "usuario":usuario,
         "ponto":parseInt(ponto)
     }
-    postJSON("/comentario",dados)   
-    carregaComentarios()
+    postJSON("/comentario",dados)
+        .then(()=>{
+            carregaComentarios()
+        })   
 }
 
 
-$(document).on("click", ".enviar",postarComentario)
+$(document).on("click", ".enviar-comentario",postarComentario)
