@@ -52,16 +52,6 @@ Create table Usuario(
 );
 
 
-Create table Avaliacao(
-    id int primary key auto_increment,
-    usuario int,
-    pontoTuristico int,
-    dataAvaliacao Date,
-    valor int not null,
-    foreign key(usuario) references Usuario(id),
-    foreign key(pontoTuristico) references PontoTuristico(id)
-);
-
 Create table Comentario(
     id int primary key auto_increment,
     usuario int,
@@ -81,6 +71,12 @@ insert into Pais(nome) values('Mexico');
 
 insert into Estado(nome,pais) values('São Paulo',1);
 insert into Estado(nome,pais) values('Amazonas',1);
+insert into Estado(nome,pais) values('São Paulo',1);
+insert into Estado(nome,pais) values('Bahia',1);
+insert into Estado(nome,pais) values('Minas Gerais',1);
+insert into Estado(nome,pais) values('Rio de Janeiro',1);
+insert into Estado(nome,pais) values('Paraná',1);
+insert into Estado(nome,pais) values('Pará',1);
 insert into Estado(nome,pais) values('Colorado',2);
 insert into Estado(nome,pais) values('Luisiana',2);
 commit;

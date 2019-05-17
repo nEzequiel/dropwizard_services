@@ -10,7 +10,7 @@ html{
 body{
     padding-top:20px;
     height: 100%;
-    background:url("../img/minimal.jpg");
+    background:url("../img/city.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: none;
@@ -136,20 +136,21 @@ body{
         transition: 0.2s linear all;
     }
     .cidade-top:first-child{
-        background: url("../img/night.png"), rgba(14, 13, 13, 0.411);
+        background: url("../img/louvre.jpg"), rgba(14, 13, 13, 0.411);
         background-size: cover;
         border-right: 2px solid rgba(0, 0, 0, 0.39);
     }
     .cidade-top:nth-child(2){
-        background: url("../img/night1.jpg"), rgba(14, 13, 13, 0.411);
+        background: url("../img/sp.jpg"), rgba(14, 13, 13, 0.411);
         background-size: cover;
     }
     .cidade-top:last-child{
-        background: url("../img/night.png"), rgba(14, 13, 13, 0.411);
+        background: url("../img/ny.jpg"), rgba(14, 13, 13, 0.411);
         background-size: cover;
         border-left: 2px solid rgba(0, 0, 0, 0.39);
     }
 }
+
 .info{
     padding:2%;
     width: 100%;
@@ -160,6 +161,11 @@ body{
     align-items: center;
     flex-direction:column;
     
+    input[type="text"],select,textarea{
+        background: rgba(238, 238, 238, 0.815);
+        border: 1px solid rgb(189, 189, 189);
+    }
+
     .btn-closeinfo{
         align-self:flex-start;
         border:none;
@@ -190,9 +196,34 @@ body{
         
         margin-top: 15%;
         background-color: rgba(255, 255, 255, 0.842);
-        border-radius:20px;
+        border-radius:50px;
         h1{
             color: rgb(28, 31, 28);
+        }
+    }
+    .box-form{
+        overflow: hidden;
+    }
+    .form-cadastro{  
+        padding: 5% 5%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+	grid-row-gap:10px;
+        
+        input[type="text"]{
+            width: 80%;
+            height: 100%;
+            padding: 0.5%;
+        }
+        select{
+            width: 80%;
+            height: 100%;
+            padding: 0.5%;
+        }
+        div{
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
         }
     }
 
