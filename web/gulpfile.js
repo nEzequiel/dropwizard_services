@@ -2,7 +2,6 @@ var gulp=require("gulp")
 var sass=require("gulp-sass")
 var concat=require("gulp-concat")
 
-var minify=require("gulp-cssmin")
 var browserSync=require("browser-sync").create()
 
 require("./tasks/app")

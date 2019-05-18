@@ -5,14 +5,11 @@ function atualizaCidadesPesquisa(event){
     $(".search-cidades").html(" ")
     let url;
     let pesquisa=$(".txtpesquisa").val()
+    let param=document.querySelector("input[type=radio]:checked").value || "nome"
     
     if(event) event.preventDefault() 
     
-    if(pesquisa==""){
-        url="/cidade/catalog/0/default"
-    }else{
-        url="/cidade/catalog/0/"+pesquisa
-    }
+    url="/cidade/catalog/0?param="+param+"&value="+pesquisa
     
     getJSON(url)
         .then(cidades=>{            
@@ -36,4 +33,6 @@ function atualizaCidadesPesquisa(event){
 
 $(".btn-pesquisar").on("click",atualizaCidadesPesquisa)
 
-atualizaCidadesPesquisa()
+if(location.pathname=="/index.html") {
+    atualizaCidadesPesquisa()
+}

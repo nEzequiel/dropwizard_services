@@ -13,12 +13,8 @@ function carregaPainelCidades(e){
     let url;
     let pesquisa=$(".txtpainelcidades").val()
     
-    if(pesquisa==""){
-        url=service+"/cidade/catalog/0/default"
-    }else{
-        url=service+"/cidade/catalog/0/"+pesquisa
-    }
-    
+    url=service+"/cidade/catalog/0?param=nome&value="+pesquisa
+
     fetch(url)
         .then(resp=>resp.json())
             .then(cidades=>{

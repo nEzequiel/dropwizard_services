@@ -379,15 +379,24 @@ body {
     flex-direction: column;
     justify-content: space-between; }
     .conteudo .consulta form {
-      width: 60%;
+      width: 70%;
       padding: 3% 0;
       display: flex;
-      justify-content: space-between;
-      align-self: center; }
+      flex-wrap: wrap;
+      align-self: center;
+      justify-content: center; }
+      .conteudo .consulta form div {
+        display: flex;
+        width: 100%;
+        justify-content: space-around; }
+      .conteudo .consulta form label {
+        width: 20%;
+        display: flex;
+        justify-content: space-around; }
       .conteudo .consulta form input[type="text"] {
         border: none;
         border-radius: 15px;
-        width: 75%;
+        width: 70%;
         padding: 0 4%; }
   .conteudo .search-cidades {
     width: 100%;
