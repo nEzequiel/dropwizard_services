@@ -42,10 +42,10 @@ public class CidadeResource implements TResource<Cidade> {
     }
     
     @GET
-    @Path("/catalog/{lastId}/{search}")
-    public List<Cidade> readCatalog(@PathParam("search") String nome,@PathParam("lastId") LongParam lastId){
+    @Path("/catalog/{lastId}")
+    public List<Cidade> readCatalog(@PathParam("lastId") LongParam lastId, @QueryParam("param") String param,@QueryParam ("value") String value){
         try{
-            return cidadeDb.listCatalog(nome,lastId.get().intValue());
+            return cidadeDb.listCatalog(param,value,lastId.get().intValue());
         }catch(Exception ex){
            throw new WebApplicationException("Não foi possivel listar os pontos turisticos",404);
         }
