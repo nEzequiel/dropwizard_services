@@ -145,23 +145,15 @@ public class CidadeDAO implements TDAO<Cidade> {
     }
 
     
-    public List<Cidade> listCatalog(String nomeLike,int lastId) throws SQLException, DatabaseCommandException {
+    public List<Cidade> listCatalog(String param,String value,int lastId) throws SQLException, DatabaseCommandException {
         String sqlCommand="";
         PreparedStatement stm ;
-        if(nomeLike.equals("default")){
-            sqlCommand="select c.id,c.nome,c.populacao, e.nome, p.nome from "
+       sqlCommand="select c.id,c.nome,c.populacao, e.nome, p.nome from "
                 + "Cidade as c inner join Pais as p on p.id=c.pais inner join Estado as e "
-                + "on e.id=c.estado  where c.id >? limit 6";        
+                + "on e.id=c.estado  where c.id >? and c."+param+" like ? limit 6";
             stm= conn.prepareStatement(sqlCommand);
             stm.setInt(1, lastId);
-        }else{
-            sqlCommand="select c.id,c.nome,c.populacao, e.nome, p.nome from "
-                + "Cidade as c inner join Pais as p on p.id=c.pais inner join Estado as e "
-                + "on e.id=c.estado  where c.id >? and c.nome like ? limit 6";
-            stm= conn.prepareStatement(sqlCommand);
-            stm.setInt(1, lastId);
-            stm.setString(2,"%"+nomeLike+"%");
-        }
+            stm.setString(2,"%"+value+"%");
         
         List<Cidade> cidades=null;
         
