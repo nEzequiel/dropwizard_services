@@ -239,7 +239,7 @@ public class PontoTuristicoDAO implements TDAO<PontoTuristico> {
                 int id=rs.getInt("id");
                 String nome=rs.getString("nome");
                 Cidade cidade=new Cidade(rs.getInt("cidade"));
-                String rua=rs.getString("numero");
+                String rua=rs.getString("rua");
                 String bairro=rs.getString("bairro");
                 int numero=rs.getInt("numero");
                 String cep=rs.getString("cep");

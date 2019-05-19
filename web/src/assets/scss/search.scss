@@ -59,6 +59,7 @@
             border: 1px solid #CCC;
             div{
                 padding: 2% 0 3% 10%;
+                width: 80%;
                 h3{
                     height: 45%;
                     font-size: 1.2em;
@@ -71,6 +72,7 @@
                 }
             }
             button{
+                position: relative;
                 width: 0px;
                 border: none;
                 border-top-right-radius: 9px;

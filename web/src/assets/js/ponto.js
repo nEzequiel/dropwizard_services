@@ -10,15 +10,20 @@ function carregaPonto(e){
                 $(".info-box").append(`
                     <article class="ponto" id="${ponto.id}">
                         <h2>${ponto.nome}</h2>
-                        <h3>Endereço: ${ponto.rua}, ${ponto.numero}, ${ponto.bairro},${ponto.cep}</h3>
-                        
+                        <div>
+                            <h3>Endereço:</h3> 
+                            <h5>Rua:</h5><p>${ponto.rua}</p> 
+                            <h5>Nº:</h5><p>${ponto.numero}</p> 
+                            <h5>Bairro:</h5> <p>${ponto.bairro}</p>
+                            <h5>CEP:</h5> <p>${ponto.cep}</p>
+                        </div>
                     </article>
                     <article class="comentarios">
                         <form name="formComentario"class="post-comentario">
-                            <textarea class="comentario" name="comentario" placeholder="Deixe seu comentário..."> </textarea>
+                            <textarea class="comentario" name="comentario"> </textarea>
                             <div class="botoes-comentarios">
-                                <input type="submit" class="enviar-comentario" value="Enviar"/>
-                                <input type="reset" class="cancelar" value="Cancelar"/>
+                                <input type="submit" class="botao-padrao enviar-comentario" value="Enviar"/>
+                                <input type="reset" class="botao-padrao cancelar" value="Cancelar"/>
                             </div>
                         </form>
                         <div class="list-comentarios">
@@ -61,10 +66,7 @@ function postarComentario(e){
         "usuario":usuario,
         "ponto":parseInt(ponto)
     }
-    postJSON("/comentario",dados)
-        .then(()=>{
-            carregaComentarios()
-        })   
+    postJSON("/comentario",dados,carregaComentarios,false)
 }
 
 

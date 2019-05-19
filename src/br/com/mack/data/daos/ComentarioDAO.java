@@ -84,7 +84,7 @@ public class ComentarioDAO implements TDAO<Comentario> {
 
     public List<Comentario> toList(int idPonto) throws Exception {
         List<Comentario> comentarios=null;
-        String sqlCommand="select * from Comentario where pontoTuristico=?";
+        String sqlCommand="select * from Comentario where pontoTuristico=? order by id desc";
         PreparedStatement stm=conn.prepareStatement(sqlCommand);
         stm.setInt(1, idPonto);
         try {

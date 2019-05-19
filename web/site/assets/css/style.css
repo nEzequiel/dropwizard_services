@@ -290,11 +290,6 @@ body {
     .info .info-subtitle h3 {
       font-size: 1em;
       padding: 0 0 0 0.4%; }
-  .info .avaliacao {
-    padding: 2% 2%;
-    border-bottom: 1px solid #ccc; }
-    .info .avaliacao h2 {
-      font-size: 1.5em; }
   .info .tabela-pontos {
     box-sizing: border-box; }
     .info .tabela-pontos h2 {
@@ -418,7 +413,8 @@ body {
       border-radius: 10px;
       border: 1px solid #CCC; }
       .conteudo .search-cidades .cidade-item div {
-        padding: 2% 0 3% 10%; }
+        padding: 2% 0 3% 10%;
+        width: 80%; }
         .conteudo .search-cidades .cidade-item div h3 {
           height: 45%;
           font-size: 1.2em;
@@ -428,6 +424,7 @@ body {
           height: 5%;
           font-size: 0.9em; }
       .conteudo .search-cidades .cidade-item button {
+        position: relative;
         width: 0px;
         border: none;
         border-top-right-radius: 9px;
@@ -441,6 +438,49 @@ body {
     .conteudo .search-cidades .cidade-item:hover button {
       width: 35px;
       transition: 0.2s linear all; }
+
+.ponto {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 3%; }
+  .ponto h2 {
+    width: 100%; }
+  .ponto div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap; }
+    .ponto div h3 {
+      width: 100%; }
+    .ponto div h5 {
+      margin-right: 10px;
+      margin-left: 15px; }
+    .ponto div p {
+      display: flex;
+      align-items: center;
+      margin: 0; }
+
+.post-comentario {
+  display: flex;
+  flex-wrap: wrap;
+  height: 200px; }
+  .post-comentario textarea {
+    width: 100%;
+    height: 60%; }
+  .post-comentario div {
+    width: 38%;
+    display: flex;
+    justify-content: space-between; }
+
+.list-comentarios {
+  display: flex;
+  flex-direction: column; }
+  .list-comentarios .box-comentario {
+    width: 100%;
+    padding: 1%;
+    border-top: 1px solid #a1a1a1;
+    margin-bottom: 10px; }
+    .list-comentarios .box-comentario h6 {
+      font-size: 1.3em; }
 
 .contact {
   display: grid;
