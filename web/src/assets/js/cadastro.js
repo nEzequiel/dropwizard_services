@@ -140,11 +140,9 @@ function GravarPonto(e){
 
     if(form){
         if(pontoID!=''){
-            putJSON("/pontoturistico",form,pontoID,carregaPainelPontos)  
-                .then(carregaPainelPontos)  
+            putJSON("/pontoturistico",form,pontoID,carregaPainelPontos)   
         }else{
             postJSON("/pontoturistico",form,carregaPainelPontos)
-                .then(carregaPainelPontos)  
         }
     }else{
         $(".validation").remove()

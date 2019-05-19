@@ -11,7 +11,7 @@ function getJSON(path){
     })
 }
 
-function postJSON(path,dados,painel){
+function postJSON(path,dados,painel,message=true){
     let url=service+path
     fetch(url,{
         method:"post",
@@ -20,10 +20,14 @@ function postJSON(path,dados,painel){
     })
         .then(resp=>{
             if(resp.ok){
-                successMessage("Cadastrado com sucesso!!!")
+                if(message){
+                  successMessage("Cadastrado com sucesso!!!")
+                }
                 painel()
             } else{
-                errorMessage("Erro ao Cadastrar!!!")
+                if(message){
+                    errorMessage("Erro ao Cadastrar!!!")
+                }
             } 
         })
 }

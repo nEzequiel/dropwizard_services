@@ -1,0 +1,57 @@
+.ponto{
+    display: flex;
+    flex-wrap:wrap;
+    padding-top: 3%;
+
+    h2{
+        width: 100%;  
+    }
+    div{
+        width: 100%;
+        display:flex;
+        flex-wrap: wrap;
+
+        h3{
+            width: 100%;
+        }
+        h5{
+            margin-right: 10px;
+            margin-left: 15px;
+        }
+        p{
+            display: flex;
+            align-items: center;
+            margin:0;
+        }
+    }
+}
+.post-comentario{
+    display: flex;
+    flex-wrap: wrap;
+    height: 200px;
+
+    textarea{
+        width: 100%;
+        height: 60%;
+    }
+    div{
+        width: 38%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.list-comentarios{
+    display: flex;
+    flex-direction: column;
+
+    .box-comentario{
+        width: 100%;
+        padding: 1%;
+        border-top: 1px solid rgb(161, 161, 161);
+        margin-bottom: 10px;
+        h6{
+            font-size: 1.3em;
+        }
+
+    }
+}
