@@ -49,7 +49,7 @@ function carregaComentarios(){
                                 <h6>Usuario</h6>
                                 <p>${comentario.texto}</p>
                             </div>
-                            <button class="btn-del-comentario">X</button>
+                            <a class="btn-del-comentario">X</a>
                         </article>
                     `)
                 });
@@ -70,6 +70,7 @@ function postarComentario(e){
         "ponto":parseInt(ponto)
     }
     postJSON("/comentario",dados,carregaComentarios,false)
+    formComentario.comentario.value=""
 }
 
 function excluirComentario(e){

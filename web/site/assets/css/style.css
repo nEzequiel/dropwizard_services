@@ -452,7 +452,10 @@ body {
       width: 100%; }
     .ponto div h5 {
       margin-right: 10px;
-      margin-left: 15px; }
+      margin-left: 15px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px; }
     .ponto div p {
       display: flex;
       align-items: center;
@@ -461,10 +464,12 @@ body {
 .post-comentario {
   display: flex;
   flex-wrap: wrap;
-  height: 200px; }
+  height: 140px; }
   .post-comentario textarea {
-    width: 100%;
-    height: 60%; }
+    width: 80%;
+    height: 60%;
+    align-self: center;
+    padding: 1%; }
   .post-comentario div {
     width: 38%;
     display: flex;
@@ -474,12 +479,29 @@ body {
   display: flex;
   flex-direction: column; }
   .list-comentarios .box-comentario {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     padding: 1%;
     border-top: 1px solid #a1a1a1;
     margin-bottom: 10px; }
-    .list-comentarios .box-comentario h6 {
-      font-size: 1.3em; }
+    .list-comentarios .box-comentario div {
+      display: flex;
+      width: 45%;
+      flex-direction: column; }
+      .list-comentarios .box-comentario div h6 {
+        font-size: 1.3em; }
+    .list-comentarios .box-comentario .btn-del-comentario {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      border-radius: 5px;
+      background: #e71010;
+      color: white;
+      font-size: 1em;
+      width: 23px;
+      height: 22px; }
 
 .contact {
   display: grid;

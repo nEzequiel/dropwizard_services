@@ -17,22 +17,27 @@
         h5{
             margin-right: 10px;
             margin-left: 15px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 4px;
         }
         p{
             display: flex;
             align-items: center;
-            margin:0;
+            margin: 0;
         }
     }
 }
 .post-comentario{
     display: flex;
     flex-wrap: wrap;
-    height: 200px;
+    height: 140px;
     
     textarea{
-        width: 100%;
+        width: 80%;
         height: 60%;
+        align-self: center;
+        padding: 1%;
     }
     div{
         width: 38%;
@@ -58,6 +63,18 @@
             h6{
                 font-size: 1.3em;
             }
+        }
+        .btn-del-comentario{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            border-radius: 5px;
+            background: rgb(231, 16, 16);
+            color: white;
+            font-size: 1em;
+            width: 23px;
+            height: 22px;
         }
     }
 }

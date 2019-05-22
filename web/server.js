@@ -1,6 +1,6 @@
 const express=require("express")
 const body=require("body-parser")
-const port=8000
+const port=3306
 const host="localhost"
 
 let app=express()
