@@ -175,9 +175,9 @@ body {
   display: flex;
   justify-content: space-between; }
   .apresentacao img {
-    background: #ccc;
-    width: 30%;
-    height: 90%; }
+    width: 25%;
+    height: 85%;
+    margin-right: 10%; }
   .apresentacao div {
     display: flex;
     flex-direction: column;
@@ -424,7 +424,6 @@ body {
           height: 5%;
           font-size: 0.9em; }
       .conteudo .search-cidades .cidade-item button {
-        position: relative;
         width: 0px;
         border: none;
         border-top-right-radius: 9px;

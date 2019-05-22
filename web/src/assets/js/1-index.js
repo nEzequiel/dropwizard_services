@@ -1,4 +1,4 @@
-let service="http://192.168.0.25:8080"
+let service="http://localhost:8080"
 
 function getJSON(path){
     let url=service+path
