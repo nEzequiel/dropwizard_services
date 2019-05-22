@@ -20,19 +20,18 @@ function postJSON(path,dados,painel,message=true){
     })
         .then(resp=>{
             if(resp.ok){
-                if(message){
+                if(message)
                   successMessage("Cadastrado com sucesso!!!")
-                }
+                
                 painel()
             } else{
-                if(message){
+                if(message)
                     errorMessage("Erro ao Cadastrar!!!")
-                }
             } 
         })
 }
 
-function putJSON(path,dados,id,painel){
+function putJSON(path,dados,id,painel,message){
     let url=service+path+`/${id}`
     fetch(url,{
         method:"put",
@@ -41,25 +40,29 @@ function putJSON(path,dados,id,painel){
     })
         .then(resp=>{
             if(resp.ok){
-                successMessage("Alterado com sucesso!!!")
+                if(message)
+                    successMessage("Alterado com sucesso!!!")
                 painel()
             } else{
-                errorMessage("Erro ao Alterar!!!")
+                if(message)
+                    errorMessage("Erro ao Alterar!!!")
             } 
         })
 }
 
-function deleteItem(path,id,painel){
+function deleteItem(path,id,painel,message){
     let url=service+path+`/${id}`
     fetch(url,{
         method:"delete",
     })
         .then(resp=>{
             if(resp.ok){
-                successMessage("Excluido com sucesso!!!")
+                if(message)
+                    successMessage("Excluido com sucesso!!!")
                 painel()
             } else{
-                errorMessage("Erro ao excluir")
+                if(message)
+                    errorMessage("Erro ao excluir")
             } 
         })
 }

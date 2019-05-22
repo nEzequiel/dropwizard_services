@@ -45,8 +45,11 @@ function carregaComentarios(){
                 comentarios.forEach(comentario => {
                     $(".list-comentarios").append(`
                         <article class="box-comentario" id="${comentario.id}">
-                            <h6>Usuario</h6>
-                            <p>${comentario.texto}</p>
+                            <div>
+                                <h6>Usuario</h6>
+                                <p>${comentario.texto}</p>
+                            </div>
+                            <button class="btn-del-comentario">X</button>
                         </article>
                     `)
                 });
@@ -69,5 +72,10 @@ function postarComentario(e){
     postJSON("/comentario",dados,carregaComentarios,false)
 }
 
+function excluirComentario(e){
+    let comentarioId=$(".box-comentario").attr("id")
+    deleteItem("/comentario",comentarioId,carregaComentarios,false)
+}
 
+$(document).on("click",".btn-del-comentario",excluirComentario)
 $(document).on("click", ".enviar-comentario",postarComentario)
